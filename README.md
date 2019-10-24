@@ -1,34 +1,5 @@
-# vue-shop
+### Small Shop Project on VUE framework
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Run your end-to-end tests
-```
-yarn test:e2e
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### Base
+This project is a child of pink_tiger_burger_builder rewritten on VUE
+The pink_tiger_burger_builder is full featured superfast shop for burgers/pizzas/sushis written from scratch on JS+SCSS+HTML+GULP
