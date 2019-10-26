@@ -4,7 +4,7 @@
 
 ## How to contribute
 
-* Fork the project from the `master` branch and submit a Pull Request (PR)
+* Fork, Star and Watch the project from the `master` branch and submit a Pull Request (PR)
   * Explain what the PR fixes or improves
   * Screenshots for bonus points
 * Use sensible commit messages
