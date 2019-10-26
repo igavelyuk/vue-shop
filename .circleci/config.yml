@@ -10,10 +10,18 @@ jobs:
       - attach_workspace:
           at: ~/rossta/connect-four-vue
       - restore_cache:
-          key: v1-yarn-{{ checksum "yarn.lock" }}
-      - run: yarn install
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
       - save_cache:
-          key: v1-yarn-{{ checksum "yarn.lock" }}
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - save_cache:
           paths:
             - ./node_modules
       - run: yarn test:unit
