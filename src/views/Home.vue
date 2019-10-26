@@ -1,9 +1,8 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <Menu msg="Welcome to Your Vue.js App"/>
-    <Main msg="Welcome to Your Vue.js App"/>
-    <Footer msg="Welcome to Your Vue.js App"/>
+    <Menu msg="This is a menu component"/>
+    <Main msg="This is a main component"/>
+    <Footer msg="This is a footer component"/>
   </div>
 </template>
 
