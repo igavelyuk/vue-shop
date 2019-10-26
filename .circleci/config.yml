@@ -51,15 +51,12 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
-      - run: npm run test:e2e -- --env phantomjs
 
   test-ssr-weex:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/project
-      - run: npm run test:ssr
-      - run: npm run test:weex
 
   trigger-regression-test:
     <<: *defaults
@@ -81,12 +78,6 @@ workflows:
       - lint-flow-types:
           requires:
             - install
-      - test-e2e:
-          requires:
-            - install
-      - test-ssr-weex:
-          requires:
-            - install
       - trigger-regression-test:
           filters:
             branches:
@@ -96,8 +87,6 @@ workflows:
           requires:
             - test-cover
             - lint-flow-types
-            - test-e2e
-            - test-ssr-weex
   weekly_regression_test:
     triggers:
       - schedule:
@@ -115,15 +104,7 @@ workflows:
       - lint-flow-types:
           requires:
             - install
-      - test-e2e:
-          requires:
-            - install
-      - test-ssr-weex:
-          requires:
-            - install
       - trigger-regression-test:
           requires:
             - test-cover
             - lint-flow-types
-            - test-e2e
-            - test-ssr-weex
