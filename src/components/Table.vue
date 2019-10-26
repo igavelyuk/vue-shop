@@ -27,34 +27,34 @@
 
 <script>
 export default {
-    data(){
-        return{
-            list:[ 
-                {name:'sample1', age:'25', gender:'single'}, 
-                {name:'sample2', age:'30', gender:'married'},
-                {name:'sample3', age:'22', gender:'single'},
-                ],
-        customers:[],
-        }
-    },
-    methods:{
-        listOfCustomer(){
-            this.customers = this.list;
-        }
-    },
-    mounted(){
-        this.listOfCustomer();
+  data () {
+    return {
+      list: [
+        { name: 'sample1', age: '25', gender: 'single' },
+        { name: 'sample2', age: '30', gender: 'married' },
+        { name: 'sample3', age: '22', gender: 'single' }
+      ],
+      customers: []
     }
+  },
+  methods: {
+    listOfCustomer () {
+      this.customers = this.list
+    }
+  },
+  mounted () {
+    this.listOfCustomer()
+  }
 }
 </script>
 
 <style>
     .table{
-       background: #e2e2e2; 
+       background: #e2e2e2;
        padding: 2px;
     }
     .t-border{
-        border: 2px;  
+        border: 2px;
     }
 
 </style>
