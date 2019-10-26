@@ -16,10 +16,10 @@ jobs:
           key: v1-yarn-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
-      - run: yarn build
       - run: yarn test:unit
-      - run: yarn test:e2e
       - run: yarn lint
+      - run: yarn test:e2e
+      - run: yarn build
       - persist_to_workspace:
           root: .
           paths: dist
