@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:9.8-stretch
+      - image: circleci/node:chakracore-10.1
     parallelism: 1
     working_directory: ~/rossta/connect-four-vue
     steps:
