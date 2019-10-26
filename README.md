@@ -1,6 +1,6 @@
 # Small Shop Project on VUE framework
 
-[![Open Source Helpers](https://www.codetriage.com/igavelyuk/vue-shop/badges/users.svg)](https://www.codetriage.com/igavelyuk/vue-shop/badges/users.svg)
+[![Open Source Helpers](https://www.codetriage.com/igavelyuk/vue-shop/badges/users.svg)](https://www.codetriage.com/igavelyuk/vue-shop/)
 
 ## Base
 
