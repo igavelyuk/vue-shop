@@ -19,7 +19,8 @@ export default {
   components: {
     Menu,
     Main,
-    Footer
+    Footer,
+    Table
   }
 }
 </script>
