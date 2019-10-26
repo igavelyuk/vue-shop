@@ -1,5 +1,5 @@
 <template>
-<div class="menu">
+<div class="menu">{{msg}}
   <router-link to="/">Home</router-link> |
   <router-link to="/about">About</router-link>
 </div>
