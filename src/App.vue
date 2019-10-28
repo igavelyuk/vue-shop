@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <Menu msg="This is a menu component" />
+    <Menu/>
     <Main msg="This is a main component" />
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
       <router-view />
     <Footer msg="This is a footer component" />
   </div>
@@ -19,6 +21,44 @@ export default {
     Menu,
     Main,
     Footer
+  },
+  data () {
+    return {
+      products: [
+        {
+          id: 1,
+          title: 'Pizza Ua',
+          promo: true,
+          price: 80,
+          size: 6,
+          description: 'Ukraine pizza'
+        },
+        {
+          id: 1,
+          title: 'Pizza It',
+          promo: true,
+          price: 80,
+          size: 10,
+          description: 'Napoli pizza'
+        },
+        {
+          id: 1,
+          title: 'Pizza Uk',
+          promo: true,
+          price: 80,
+          size: 8,
+          description: 'Uk pizza'
+        },
+        {
+          id: 1,
+          title: 'Pizza USA',
+          promo: true,
+          price: 80,
+          size: 16,
+          description: 'Made in USA pizza'
+        }
+      ]
+    }
   }
 }
 </script>
