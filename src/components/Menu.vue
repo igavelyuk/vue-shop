@@ -5,10 +5,7 @@
 
 <script>
 export default {
-  name: 'Menu',
-  props: {
-    msg: String
-  }
+  name: 'Menu'
 }
 </script>
 
