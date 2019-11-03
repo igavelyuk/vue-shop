@@ -1,20 +1,37 @@
 <template>
-<div class="main">{{msg}}</div>
+<div class="main">
+  <div :key="product.id" v-for="product in products" class="products">
+    <Product v-bind:product="product"/>
+  </div>
+</div>
 </template>
 
 <script>
+import Product from '../components/Products.vue'
+
 export default {
   name: 'Main',
-  props: {
-    msg: String
-  }
+  components: {
+    Product
+  },
+  props: ['products']
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
 .main {
-background:#fac0fa;
+    background: #fff;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1em;
+}
+main > div{
+  background: #eee;
+  padding: 1em;
+}
+main > div:nth(odd){
+  background: #888;
+  padding: 1em;
 }
 </style>

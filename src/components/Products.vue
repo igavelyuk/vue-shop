@@ -1,15 +1,20 @@
 <template>
 <div class="product">
-  <div v-bind:key="products.id" v-for = "products in products">
-    <h3>{{products.title}}</h3>
-  </div>
+    <h3>{{product.name}}</h3>
+    <div class="image">
+    </div>
+    <div>
+      <b>Price:{{product.currentprice}}
+        <b class = "promo-false" v-bind:class = "{'promo-true':product.promo}">{{product.lastprice}}</b>
+      </b>
+    </div>
 </div>
 </template>
 
 <script>
 export default {
   name: 'Product',
-  props: ['products']
+  props: ['product']
 }
 </script>
 
@@ -18,5 +23,17 @@ export default {
   background-color: ff8888;
   display: block;
   margin: auto;
+}
+.image{
+  height: 300px;
+  width: 300px;
+  background-color: #882222;
+}
+.promo-true{
+  text-decoration: line-through;
+  background: red;
+}
+.promo-false{
+  color: white;
 }
 </style>
