@@ -1,5 +1,5 @@
 <template>
-<div class="main">
+<div class="main">{{msg}}
   <div :key="product.id" v-for="product in products" class="products">
     <Product v-bind:product="product"/>
   </div>

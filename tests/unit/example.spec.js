@@ -13,16 +13,6 @@ describe('Menu.vue', () => {
   })
 })
 
-describe('Main.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(Main, {
-      propsData: { msg }
-    })
-    expect(wrapper.text()).toMatch(msg)
-  })
-})
-
 describe('Footer.vue', () => {
   it('renders props.msg when passed', () => {
     const msg = 'new message'
