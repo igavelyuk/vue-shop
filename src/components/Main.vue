@@ -14,7 +14,11 @@ export default {
   components: {
     Product
   },
-  props: ['products']
+  props: ['products'],
+  msg: {
+    type: String,
+    required: false
+  }
 }
 </script>
 
