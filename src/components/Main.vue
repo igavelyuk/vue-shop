@@ -21,17 +21,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .main {
-    background: #fff;
+    background: #ffffff;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1em;
 }
-main > div{
-  background: #eee;
+.main > div{
+  background: #eeeeee;
   padding: 1em;
 }
-main > div:nth(odd){
-  background: #888;
+.main > div:nth-child(odd){
+  background: #dddddd;
   padding: 1em;
 }
 </style>

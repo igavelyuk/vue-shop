@@ -20,7 +20,6 @@ export default {
 
 <style scoped lang="scss">
 .product{
-  background-color: ff8888;
   display: block;
   margin: auto;
 }

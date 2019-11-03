@@ -44,6 +44,26 @@ export default {
           description: 'Some description ipsum lorem',
           icon: '',
           picture: ''
+        },
+        {
+          id: 3,
+          name: 'Napoletano',
+          promo: false,
+          lastprice: 300,
+          currentprice: 200,
+          description: 'Some description ipsum lorem',
+          icon: '',
+          picture: ''
+        },
+        {
+          id: 4,
+          name: 'Napoletano 2',
+          promo: true,
+          lastprice: 300,
+          currentprice: 200,
+          description: 'Some description ipsum lorem',
+          icon: '',
+          picture: ''
         }
       ]
     }
