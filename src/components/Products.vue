@@ -2,9 +2,10 @@
 <div class="product">
   <h3>{{product.name}}</h3>
   <div class="image">
+    <img class="chart-icon" :src="chartIcon" alt="">
     <img class="image" :src="image" alt="">
     <img class="brand-overlay" :src="brandOverlay" alt="">
-    <img class="chart-icon" :src="chartIcon" alt="">
+
   </div>
   <div>
     <b>Price:{{product.currentprice}}</b>
@@ -51,31 +52,28 @@ $image-bg: #ddeedd;
     left: 0;
 }
 
-@media (min-height: 680px), screen and (orientation: portrait) and (aspect-ratio: 4/5) {
+@media (min-height: 680px), screen and (orientation: portrait) {
     .image {
         position: relative;
         top: 0;
         left: 0;
-        height: 20rem;
+        height: 10rem;
         width: auto;
         background-color: $image-bg;
     }
     .brand-overlay {
         position: absolute;
-        top: 40%;
-        left: 0;
-        width: 100%;
-        height: auto;
+        top: 30%;
+        left: 30%;
+        width: 50%;
         opacity: 0.8;
         filter: alpha(opacity=80);
         /* For IE8 and earlier */
         border-radius: 5 px;
+        z-index: 1;
     }
     .chart-icon {
-        float: right;
         position: absolute;
-        top: 5px;
-        left: 170px;
         height: 20px;
         width: 20px;
         padding: 10px;
@@ -83,6 +81,7 @@ $image-bg: #ddeedd;
         background: $chart-icon-bg;
         border-radius: 5px;
         color: $chart-icon;
+        z-index: 2;
     }
     .promo-true {
         text-decoration: line-through;
@@ -91,12 +90,12 @@ $image-bg: #ddeedd;
         color: $promo-false;
     }
 }
-@media (aspect-ratio: 16/9) {
+@media (min-height: 680px), screen and (orientation: landscape)  {
     .image {
         position: relative;
         top: 0;
         left: 0;
-        height: 200px;
+        height: 100px;
         width: auto;
         background-color: $image-bg;
     }
@@ -104,7 +103,7 @@ $image-bg: #ddeedd;
         position: absolute;
         top: 40%;
         left: 0;
-        width: 100%;
+        width: 98%;
         height: auto;
         opacity: 0.8;
         filter: alpha(opacity=80);
@@ -115,12 +114,12 @@ $image-bg: #ddeedd;
         float: right;
         position: absolute;
         top: 5px;
-        left: 170px;
+        left: 150px;
         height: 20px;
         width: 20px;
         padding: 10px;
         border: 2px solid $chart-icon-border;
-        background: $chart-icon-bg;
+        background: magenta;
         border-radius: 5px;
         color: $chart-icon;
     }
