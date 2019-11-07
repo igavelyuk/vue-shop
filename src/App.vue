@@ -5,6 +5,8 @@
   <router-view />
   <Menu />
   <Main v-bind:products="products" />
+  <hr/>
+  <Main v-bind:pizzas="pizzas" />
   <Footer msg="This is a footer component" copyInfo="Opensource" />
 </div>
 </template>
@@ -31,9 +33,10 @@ export default {
           promo: false,
           lastprice: 300,
           currentprice: 200,
+          size: 2,
           description: 'Some description ipsum lorem',
-          icon: '',
-          picture: ''
+          icon: '../assets/pic.jpg',
+          picture: '../assets/pic.jpg'
         },
         {
           id: 2,
@@ -41,9 +44,10 @@ export default {
           promo: true,
           lastprice: 300,
           currentprice: 200,
+          size: 2,
           description: 'Some description ipsum lorem',
-          icon: '',
-          picture: ''
+          icon: '../assets/pic.jpg',
+          picture: '../assets/pic.jpg'
         },
         {
           id: 3,
@@ -51,9 +55,10 @@ export default {
           promo: false,
           lastprice: 300,
           currentprice: 200,
+          size: 2,
           description: 'Some description ipsum lorem',
-          icon: '',
-          picture: ''
+          icon: '../assets/pic.jpg',
+          picture: '../assets/pic.jpg'
         },
         {
           id: 4,
@@ -61,9 +66,78 @@ export default {
           promo: true,
           lastprice: 300,
           currentprice: 200,
+          size: 2,
           description: 'Some description ipsum lorem',
-          icon: '',
-          picture: ''
+          icon: '../assets/pic.jpg',
+          picture: '../assets/pic.jpg'
+        }
+      ],
+      pizzas: [
+        {
+          id: 5,
+          name: 'dddddddno',
+          promo: false,
+          lastprice: 300,
+          currentprice: 200,
+          size: 2,
+          description: 'Some description ipsum lorem',
+          icon: '../assets/pic.jpg',
+          picture: '../assets/pic.jpg'
+        },
+        {
+          id: 6,
+          name: 'Ndvdvdv 2',
+          promo: true,
+          lastprice: 300,
+          currentprice: 200,
+          size: 2,
+          description: 'Some description ipsum lorem',
+          icon: '../assets/pic.jpg',
+          picture: '../assets/pic.jpg'
+        },
+        {
+          id: 7,
+          name: 'Navddvdvno',
+          promo: false,
+          lastprice: 300,
+          currentprice: 200,
+          size: 2,
+          description: 'Some description ipsum lorem',
+          icon: '../assets/pic.jpg',
+          picture: '../assets/pic.jpg'
+        },
+        {
+          id: 8,
+          name: 'Navdvdvo 2',
+          promo: true,
+          lastprice: 300,
+          currentprice: 200,
+          size: 2,
+          description: 'Some description ipsum lorem',
+          icon: '../assets/pic.jpg',
+          picture: '../assets/pic.jpg'
+        },
+        {
+          id: 9,
+          name: 'Navddvdvno',
+          promo: false,
+          lastprice: 300,
+          currentprice: 200,
+          size: 2,
+          description: 'Some description ipsum lorem',
+          icon: '../assets/pic.jpg',
+          picture: '../assets/pic.jpg'
+        },
+        {
+          id: 10,
+          name: 'Navdvdvo 2',
+          promo: true,
+          lastprice: 300,
+          currentprice: 200,
+          size: 2,
+          description: 'Some description ipsum lorem',
+          icon: '../assets/pic.jpg',
+          picture: '../assets/pic.jpg'
         }
       ]
     }
@@ -81,6 +155,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    display: flex;
+    flex-direction: column;
 }
 
 #nav {

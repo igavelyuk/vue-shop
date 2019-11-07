@@ -8,14 +8,16 @@
 export default {
   name: 'Menu',
   props: {
-    msg: String
+    msg: {
+      type: String,
+      required: false
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
-
 .menu {
-background:#c0fac0;
+    background: #c0fac0;
 }
 </style>

@@ -28,11 +28,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .footer {
+    margin-top: 20px;
     background: #fac0c0;
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
+    flex-shrink: 0;
 
     h1 {
       margin:0;

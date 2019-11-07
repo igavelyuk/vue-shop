@@ -3,6 +3,9 @@
   <div :key="product.id" v-for="product in products" class="products">
     <Product v-bind:product="product"/>
   </div>
+  <div :key="product.id" v-for="product in pizzas" class="products">
+    <Product v-bind:product ="product"/>
+  </div>
 </div>
 </template>
 
@@ -14,7 +17,7 @@ export default {
   components: {
     Product
   },
-  props: ['products']
+  props: ['products', 'pizzas']
 }
 </script>
 
