@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <Table></Table>
+    <Main v-bind:products="products" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Table from '@/components/Table.vue'
+import Main from '@/components/Main.vue'
 
 export default {
   name: 'home',
   components: {
-    Table
+    Main
   }
 }
 </script>

@@ -1,9 +1,6 @@
 <template>
-<div class="main">{{msg}}
+<div class="main collumns is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">{{msg}}
   <div :key="product.id" v-for="product in products" class="products">
-    <Product v-bind:product="product" />
-  </div>
-  <div :key="product.id" v-for="product in pizzas" class="products">
     <Product v-bind:product="product" />
   </div>
 </div>
@@ -17,7 +14,11 @@ export default {
   components: {
     Product
   },
-  props: ['products', 'pizzas']
+  computed: {
+    products () {
+      return this.$store.getters.products
+    }
+  }
 }
 </script>
 
