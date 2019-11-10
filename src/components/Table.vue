@@ -29,7 +29,7 @@
               <td>
                 {{ product.currentprice }}
               </td>
-              <td>
+              <td class = "striked">
                 {{ product.lastprice }}
               </td>
               <td>
@@ -97,12 +97,15 @@ export default {
 </script>
 
 <style>
-    .table{
-       background: #e2e2e2;
-       padding: 2px;
-    }
-    .t-border{
-        border: 2px;
-    }
-
+.table{
+  background: #e2e2e2;
+  padding: 2px;
+}
+.t-border{
+  border: 2px;
+}
+.striked {
+  text-decoration: line-through;
+  color: #ff0000;
+}
 </style>

@@ -11,14 +11,9 @@
     <p class="title is-4">{{product.name}}</p>
     <div class="media">
       <div class="media-left">
-        <figure class="image is-48x48">
-          <img :src="chartIcon" alt="Placeholder image">
-        </figure>
-        <section>
-          <b-button @click="clickMe">Click Me</b-button>
-        </section>
-      </div>
+        <SelectionOrder/>
       <div class="media-content">
+      </div>
         <p class="subtitle is-6">Price: <b>{{product.currentprice}}</b>
           <i v-if="product.promo" class="promo-false" v-bind:class="{'promo-true':product.promo}">
           {{product.lastprice}}
@@ -60,15 +55,15 @@
 import image from '../assets/pic.jpg'
 import brandOverlay from '../assets/overlay.png'
 import chartIcon from '../assets/chart_Overlay.png'
+import SelectionOrder from '../components/SelectionOrder.vue'
 
 export default {
   name: 'Product',
   methods: {
-    clickMe () {
-      this.$buefy.notification.open('Clicked!!')
-    }
   },
-  components: {},
+  components: {
+    SelectionOrder
+  },
   props: ['product'],
   data: function () {
     return {
@@ -81,6 +76,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+*{
+  outline: 1px dotted red;
+}
+.extra-paddings{
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+.extra-paddings-button-chart{
+  margin-left: 20px;
+}
 .brand-overlay {
   position: absolute!important;
   top:70%!important;
