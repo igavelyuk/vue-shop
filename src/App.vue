@@ -1,7 +1,7 @@
 <template>
 
   <div id="app">
-      <Menu/>
+      <Menu msg="This is a footer component"/>
     <div class="container is-fullhd">
       <div class="notification">
         <router-view/>

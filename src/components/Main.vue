@@ -14,6 +14,12 @@ export default {
   components: {
     Product
   },
+  props:
+  ['product'],
+  msg: {
+    type: String,
+    required: false
+  },
   computed: {
     products () {
       return this.$store.getters.products

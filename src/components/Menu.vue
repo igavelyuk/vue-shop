@@ -3,7 +3,7 @@
     <b-navbar>
         <template slot="brand">
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
-                <img src="../assets/logo.png" width="112" height="28">
+                <img src="../assets/logo.png" width="150" height="40">
             </b-navbar-item>
         </template>
         <template slot="start">

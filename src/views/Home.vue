@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Main v-bind:products="products" />
+    <Main msg="This is a footer component" v-bind:products="products" />
   </div>
 </template>
 
@@ -9,7 +9,14 @@
 import Main from '@/components/Main.vue'
 
 export default {
-  name: 'home',
+  name: 'Home',
+  props: {
+    msg: {
+      type: String,
+      required: false
+    },
+    products: []
+  },
   components: {
     Main
   }

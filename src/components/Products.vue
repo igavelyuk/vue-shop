@@ -11,7 +11,7 @@
     <p class="title is-4">{{product.name}}</p>
     <div class="media">
       <div class="media-left">
-        <SelectionOrder/>
+        <SelectionOrder v-bind:product="product"/>
       <div class="media-content">
       </div>
         <p class="subtitle is-6">Price: <b>{{product.currentprice}}</b>
@@ -65,6 +65,10 @@ export default {
     SelectionOrder
   },
   props: ['product'],
+  msg: {
+    type: String,
+    required: false
+  },
   data: function () {
     return {
       image: image,

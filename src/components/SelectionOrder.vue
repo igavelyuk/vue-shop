@@ -18,7 +18,7 @@
      native-value="24cm">
      S &nbsp;
      </b-radio>
-       <b-button class="extra-paddings-button-chart" @click="clickMe">Add to Chart</b-button>
+       <b-button class="extra-paddings-button-chart" @click="addProduct(product)">Add to Chart</b-button>
      </div>
      <p class="content">
        <b>Pizza size:</b>
@@ -31,10 +31,29 @@
 export default {
   name: 'SelectionOrder',
   methods: {
-    clickMe () {
-      this.$buefy.notification.open('Clicked!!')
+    snackbar () {
+      this.$buefy.snackbar.open(`Default, positioned isbottom with a green 'OK' button`)
+    },
+    addProduct (ids) {
+      this.$buefy.snackbar.open({
+        message: 'Product added to chart',
+        position: 'is-bottom',
+        actionText: 'Go to Chart',
+        onAction: () => {
+          this.$buefy.toast.open({
+            message: 'Action pressed',
+            queue: false
+          })
+          this.$router.push({ path: 'chart' })
+        }
+      })
+      // this.$store.state.chart = ''
+      // this.$store.dispatch('deletex', 0)
+      this.$store.commit('addToChart', ids)
+      // -> 1addToChart
     }
   },
+  props: ['product'],
   components: {},
   data: function () {
     return {
