@@ -80,9 +80,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-*{
-  outline: 1px dotted red;
-}
+// *{
+//   outline: 1px dotted red;
+// }
 .extra-paddings{
   padding-top: 9px;
   padding-bottom: 9px;

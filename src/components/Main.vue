@@ -30,7 +30,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@media (min-height: 680px), screen and (orientation: portrait) {
+@media (min-height: 815px), screen and (orientation: portrait) {
     .main {
         background: #ffffff;
         display: grid;
@@ -46,7 +46,7 @@ export default {
         padding: 1em;
     }
 }
-@media (min-height: 680px), screen and (orientation: landscape){
+@media (min-height: 815pxpx), screen and (orientation: landscape){
     .main {
         background: #ffffff;
         display: grid;
@@ -55,11 +55,11 @@ export default {
     }
     .main > div {
         background: #eeeeee;
-        padding: 1em;
+        padding: 0.5em;
     }
     .main > div:nth-child(odd) {
         background: #dddddd;
-        padding: 1em;
+        padding: 0.5em;
     }
 }
 </style>

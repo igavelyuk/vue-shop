@@ -3,7 +3,7 @@
       <table class="t-border">
           <thead>
               <tr>
-                <th>&#10026;</th>
+                <th><b-icon pack="fas" icon="list-ol"></b-icon></th>
                 <th>Promo</th>
                 <th>Product Name</th>
                 <th>Size</th>
@@ -15,10 +15,13 @@
           </thead>
           <tbody>
             <tr v-for="(product,indx) in products" :key="indx">
-              <td>&#10026;
+              <td>
+                {{ product.id }}
+                <!-- <b-icon pack="fas" icon="bullseye"></b-icon> -->
               </td>
               <td>
-                {{ product.promo }}
+                <b-icon v-if="product.promo" pack="fas" icon="check-circle"></b-icon>
+                <b-icon v-else pack="fas" icon="times-circle"></b-icon>
               </td>
               <td>
                 {{ product.name }}
@@ -39,7 +42,7 @@
                 <div class="buttons">
                   <!-- <b-button @click="$emit('delProduct',product.id)" class="buttons" rounded type="is-danger" outlined>&#10060;</b-button> -->
                   <!-- <b-button @click="delProduct(product.id)" class="buttons" rounded type="is-danger" outlined>&#10026;</b-button> -->
-                    <b-button @click="delProduct(product.id)" class="buttons" rounded type="is-danger" outlined>&#10060;</b-button>
+                    <b-button @click="delProduct(product.id)" class="buttons" rounded type="is-danger" outlined><b-icon pack="fas" icon="times"></b-icon></b-button>
                 </div>
               </td>
               </tr>
@@ -71,8 +74,8 @@ export default {
 
 <style>
 .buttons{
-  margin: 0px!important;
-  padding: 0px 10px 0px 10px!important;
+  /* margin: 0px!important; */
+  /* padding: 0px 10px 0px 10px!important; */
 }
 .table{
   background: #e2e2e2;

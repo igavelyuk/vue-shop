@@ -18,7 +18,7 @@
      native-value="24cm">
      S &nbsp;
      </b-radio>
-       <b-button class="extra-paddings-button-chart" @click="addProduct(product)">Add to Chart</b-button>
+       <b-button class="extra-paddings-button-chart" @click="addProduct(product)"><b-icon class="icon-button" label="Videos" icon="shopping-cart"></b-icon></b-button>
      </div>
      <p class="content">
        <b>Pizza size:</b>
@@ -64,14 +64,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
-*{
+// *{
+//   outline: 1px dotted red;
+// }
+.icon-button{
+  margin:0px;
+  padding:0px;
+  height: 44px;
+  width: 44px;
+  color: magenta;
   outline: 1px dotted red;
 }
 .extra-paddings{
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding-top: 12px;
+  padding-bottom: 4px;
 }
 .extra-paddings-button-chart{
   margin-left: 20px;
+  height: 44px;
+  width: 44px;
 }
 </style>

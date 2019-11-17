@@ -13,12 +13,12 @@
             <b-navbar-item href="#">
               <router-link class="link" to="/about">About</router-link>
             </b-navbar-item>
-            <b-navbar-item href="#">
+            <span>
               <input class="input" type="text" placeholder="Find a product">
               <button class="button">
                 Search
               </button>
-            </b-navbar-item>
+            </span>
             <b-navbar-item>
               <router-link class="link" to="/chart">Chart</router-link>
             </b-navbar-item>
