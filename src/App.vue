@@ -1,5 +1,4 @@
 <template>
-
   <div id="app">
       <Menu />
     <div class="container is-fullhd">
