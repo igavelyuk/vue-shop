@@ -41,7 +41,11 @@
 
 <script>
 import Vue from 'vue'
+import Buefy from 'buefy'
 import VueRouter from 'vue-router'
+import 'buefy/dist/buefy.css'
+
+Vue.use(Buefy)
 Vue.use(VueRouter)
 
 export default {
