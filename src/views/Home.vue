@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Main msg="This is a footer component" v-bind:products="products" />
+    <Main v-bind:products="products" />
   </div>
 </template>
 
