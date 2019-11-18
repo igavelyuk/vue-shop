@@ -14,11 +14,12 @@ export default {
   components: {
     Product
   },
-  props:
-  ['product'],
-  msg: {
-    type: String,
-    required: false
+  props: {
+    product: [],
+    msg: {
+      type: String,
+      required: false
+    }
   },
   computed: {
     products () {
