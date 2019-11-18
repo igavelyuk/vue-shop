@@ -44,7 +44,10 @@ import Vue from 'vue'
 import Buefy from 'buefy'
 import VueRouter from 'vue-router'
 
-Vue.use(Buefy)
+Vue.use(Buefy, {
+  defaultIconComponent: 'vue-fontawesome',
+  defaultIconPack: 'fas'
+})
 Vue.use(VueRouter)
 
 export default {

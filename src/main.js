@@ -16,8 +16,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faCheck, faCheckCircle, faInfoCircle, faExclamationTriangle, faExclamationCircle, faArrowUp, faAngleRight, faAngleLeft, faAngleDown, faEye, faEyeSlash, faCaretDown, faCaretUp, faUpload)
 Vue.component('vue-fontawesome', FontAwesomeIcon)
 
-// ...
-
 // import Buefy from 'buefy'
 Vue.use(Buefy, {
   defaultIconComponent: 'vue-fontawesome',
