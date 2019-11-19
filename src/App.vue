@@ -14,6 +14,7 @@
 // @ is an alias to /src
 import Menu from '@/components/Menu.vue'
 import Footer from '@/components/Footer.vue'
+import store from './store'
 import firebase from 'firebase'
 export default {
   name: 'home',
@@ -37,7 +38,16 @@ export default {
 
       dbRef.on('value', function (datax) {
         var data = datax.val()
-        console.log(data.products)
+        console.log(data)
+        // var fixedJson = JSON.parse(data)
+        let nodes = JSON.parse(JSON.stringify(data.products))
+        console.log(nodes)
+        console.log(nodes.length)
+        console.log(nodes[0])
+        // console.log(fixedJson.products)
+        nodes.forEach((node) => {
+          store.commit('addToProducts', node)
+        })
       })
     }
   },
