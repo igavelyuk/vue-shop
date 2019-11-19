@@ -10,9 +10,6 @@ import Main from '@/components/Main.vue'
 
 export default {
   name: 'Home',
-  beforeCreate () {
-    console.log('Nothing gets called before me!')
-  },
   props: {
     msg: {
       type: String,

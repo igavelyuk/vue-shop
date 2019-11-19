@@ -14,44 +14,30 @@
 // @ is an alias to /src
 import Menu from '@/components/Menu.vue'
 import Footer from '@/components/Footer.vue'
-// Firebase App (the core Firebase SDK) is always required and must be listed first
-import * as firebase from 'firebase/app'
-// If you enabled Analytics in your project, add the Firebase SDK for Analytics
-import 'firebase/analytics'
-
-// import axios from 'axios'
-// Add the Firebase products that you want to use
-import 'firebase/auth'
-import 'firebase/firestore'
-const firebaseConfig = {
-  apiKey: 'AIzaSyCfuNPEtK6zI23THVVKaS1D9fkUYTeWZaA',
-  authDomain: 'pizzapanda-cad4c.firebaseapp.com',
-  databaseURL: 'https://pizzapanda-cad4c.firebaseio.com',
-  projectId: 'pizzapanda-cad4c',
-  storageBucket: 'pizzapanda-cad4c.appspot.com',
-  messagingSenderId: '13022259211',
-  appId: '1:13022259211:web:0812d47f5b521e8603ff0e',
-  measurementId: 'G-79D3KWHE21'
-}
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig)
-
+import firebase from 'firebase'
 export default {
   name: 'home',
   data () {
     return {
-      status: ''
+      status: false
     }
   },
-  beforeMount: function () {
-    this.loadData()
+  created: function () {
+    if (this.status === false) {
+      this.loadData()
+      this.status = true
+    }
   },
   methods: {
     loadData: function () {
-      var dbRef = firebase.database().ref()
+      console.log('Pass Firebase')
+      firebase.analytics()
+      var databasedd = firebase.database()
+      var dbRef = databasedd.ref()
+
       dbRef.on('value', function (datax) {
-        var da = datax.val()
-        console.log(da)
+        var data = datax.val()
+        console.log(data.products)
       })
     }
   },
