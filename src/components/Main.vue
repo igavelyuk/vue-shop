@@ -44,7 +44,7 @@ export default {
     }
     .main > div:nth-child(odd) {
         background: #dddddd;
-        padding: 1em;
+        padding: 0.1em;
     }
 }
 @media (min-height: 815pxpx), screen and (orientation: landscape){
@@ -52,15 +52,15 @@ export default {
         background: #ffffff;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-gap: 1em;
+        grid-gap: 0.1em;
     }
     .main > div {
         background: #eeeeee;
-        padding: 0.5em;
+        padding: 0.1em;
     }
     .main > div:nth-child(odd) {
         background: #dddddd;
-        padding: 0.5em;
+        padding: 0.1em;
     }
 }
 </style>

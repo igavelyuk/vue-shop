@@ -80,7 +80,7 @@ export default {
 .table{
   background: #e2e2e2;
   padding: 2px;
-  font-size: 1.50em;
+  font-size: 1em;
 }
 .t-border{
   border: 2px;

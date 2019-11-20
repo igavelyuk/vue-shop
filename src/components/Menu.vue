@@ -3,35 +3,33 @@
   <b-navbar>{{msg}}
       <template slot="brand">
           <b-navbar-item tag="router-link" :to="{ path: '/' }">
-              <img src="../assets/logo.png" width="150" height="40">
+              <img src="../assets/logo.png" width="30" height="50">
+              <span class="brand">{{brand_name}}</span>
           </b-navbar-item>
       </template>
       <template slot="start">
-          <b-navbar-item href="#">
-            <router-link class="link" to="/">Home</router-link>
+          <b-navbar-item tag="router-link" :to="{ path: '/' }">
+            <b-icon class="icon" pack="fas" icon="home"></b-icon>Home
           </b-navbar-item>
-          <b-navbar-item href="#">
-            <router-link class="link" to="/about">About</router-link>
+          <b-navbar-item tag="router-link" :to="{ path: '/about' }">
+            <b-icon class="icon" pack="fas" icon="address-card"></b-icon>About
           </b-navbar-item>
-          <span>
+          <b-navbar-item tag="router-link" :to="{ path: '/chart' }">
+            <b-icon class="icon" pack="fas" icon="shopping-cart"></b-icon>Chart
+          </b-navbar-item>
+          <span class="search">
             <input class="input" type="text" placeholder="Find a product">
-            <button class="button">
-              Search
-            </button>
           </span>
-          <b-navbar-item>
-            <router-link class="link" to="/chart">Chart</router-link>
-          </b-navbar-item>
       </template>
 
       <template slot="end">
           <b-navbar-item tag="div">
               <div class="buttons">
                   <a class="button is-primary">
-                      <strong>Sign up</strong>
+                      <b-icon class="icon" pack="fas" icon="user-plus"></b-icon><strong>Sign up</strong>
                   </a>
                   <a class="button is-light">
-                      Log in
+                      <b-icon class="icon" pack="fas" icon="sign-in-alt"></b-icon>Log in
                   </a>
               </div>
           </b-navbar-item>
@@ -57,6 +55,11 @@ export default {
       type: String,
       required: false
     }
+  },
+  data () {
+    return {
+      brand_name: 'Пицца Панда БС'
+    }
   }
 }
 </script>
@@ -65,12 +68,21 @@ export default {
 .navbar {
   background: #33dd33;
 }
-.link {
-  padding: 10px;
-  color: #ffffff;
+.brand {
+  margin-left: 20px;
 }
-.link:hover {
-  padding: 10px;
-  color: #333333;
+.search {
+  margin: 8px;
 }
+.icon {
+  margin: 5px!important;
+}
+// .link {
+//   padding: 10px;
+//   color: #ffffff;
+// }
+// .link:hover {
+//   padding: 10px;
+//   color: #333333;
+// }
 </style>

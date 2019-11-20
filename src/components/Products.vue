@@ -84,8 +84,8 @@ export default {
 //   outline: 1px dotted red;
 // }
 .extra-paddings{
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 .extra-paddings-button-chart{
   margin-left: 20px;

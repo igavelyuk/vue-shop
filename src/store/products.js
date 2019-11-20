@@ -3,6 +3,26 @@ export default ({
     products: [
     ],
     productsChart: [
+    ],
+    promo: [
+      {
+        id: 1,
+        time_start: 12,
+        time_end: 15,
+        q_start: 1,
+        q_end: 99,
+        discount: 50,
+        discount_price: 100
+      },
+      {
+        id: 0,
+        time_start: 0,
+        time_end: 0,
+        q_start: 3,
+        q_end: 99,
+        discount: 50,
+        discount_price: 0
+      }
     ]
   },
   mutations: {

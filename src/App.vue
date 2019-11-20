@@ -1,5 +1,5 @@
 <template>
-  <div id="app">{{status}}
+  <div id="app">
       <Menu />
     <div class="container is-fullhd">
       <div class="notification">
@@ -83,6 +83,9 @@ export default {
         color: #42b983;
       }
     }
+  }
+  .notification {
+    background: #ffffff!important;
   }
 
 </style>
