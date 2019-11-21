@@ -72,8 +72,7 @@ export default {
   padding:0px;
   height: 44px;
   width: 44px;
-  color: magenta;
-  outline: 1px dotted red;
+  // outline: 1px dotted red;
 }
 .extra-paddings{
   padding-top: 12px;

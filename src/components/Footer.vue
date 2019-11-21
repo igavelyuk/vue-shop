@@ -29,7 +29,7 @@ export default {
 <style scoped lang="scss">
   .footer {
     margin-top: 20px;
-    background: #fac0c0;
+    background: #f0f0f0;
     flex-shrink: 0;
 
     h1 {

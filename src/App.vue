@@ -47,6 +47,7 @@ export default {
         // console.log(fixedJson.products)
         nodes.forEach((node) => {
           store.commit('addToProducts', node)
+          store.commit('addToBackup', node)
         })
       })
     }

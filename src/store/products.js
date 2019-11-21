@@ -2,6 +2,9 @@ export default ({
   state: {
     products: [
     ],
+    backup: [
+
+    ],
     productsChart: [
     ],
     promo: [
@@ -32,10 +35,27 @@ export default ({
     addToProducts (state, payload) {
       state.products.push(payload)
     },
+    addToBackup (state, payload) {
+      state.backup.push(payload)
+    },
+    restoreBackup (state) {
+      state.products = state.backup
+    },
     delete (state, ids) {
       state.productsChart = state.productsChart.filter(function (obj) {
         return obj.id !== ids
       })
+    },
+    filterProducts (state, payload) {
+      console.log('Hello!S')
+      // var array = []
+      // for (var i = 0; i < state.products.length; i++) {
+      //   return state.products[i].name.includes(payload)
+      // }
+      var filtered = state.products.filter((post) => {
+        return post.name.includes(payload)
+      })
+      state.products = filtered
     }
   },
   actions: {
