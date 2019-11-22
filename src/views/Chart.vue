@@ -9,7 +9,7 @@
 import Table from '@/components/Table.vue'
 
 export default {
-  name: 'home',
+  name: 'Chart',
   components: {
     Table
   }

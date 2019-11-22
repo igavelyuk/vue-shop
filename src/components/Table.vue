@@ -16,7 +16,7 @@
           <tbody>
             <tr v-for="(product,indx) in products" :key="indx">
               <td>
-                {{ product.id }}
+                {{ indx+1 }}
                 <!-- <b-icon pack="fas" icon="bullseye"></b-icon> -->
               </td>
               <td>
@@ -30,7 +30,7 @@
                 {{ product.size }}
               </td>
               <td>
-                {{ product.qty }}
+                {{ product.quantity }}
               </td>
               <td>
                 {{ product.currentprice }}

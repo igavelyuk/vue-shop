@@ -18,7 +18,7 @@
      native-value="24cm">
      S &nbsp;
      </b-radio>
-       <b-button class="extra-paddings-button-chart" @click="addProduct(product)"><b-icon class="icon-button" label="Videos" icon="shopping-cart"></b-icon></b-button>
+       <b-button class="extra-paddings-button-chart" @click="addProduct(product)" type="is-primary" outlined pack="fas" icon-left="shopping-cart"></b-button>
      </div>
      <p class="content">
        <b>Pizza size:</b>
@@ -28,13 +28,17 @@
 </template>
 
 <script>
+import uuid from 'uuid'
 export default {
   name: 'SelectionOrder',
   methods: {
     snackbar () {
       this.$buefy.snackbar.open(`Default, positioned isbottom with a green 'OK' button`)
     },
-    addProduct (ids) {
+    addProduct (product) {
+      // console.log('-------------PRODUCT--------------')
+      // console.log(product)
+      // console.log('-------------PRODUCT--------------')
       this.$buefy.snackbar.open({
         message: 'Product added to chart',
         position: 'is-bottom',
@@ -47,9 +51,18 @@ export default {
           this.$router.push({ path: 'chart' })
         }
       })
-      // this.$store.state.chart = ''
-      // this.$store.dispatch('deletex', 0)
-      this.$store.commit('addToChart', ids)
+      const newProduct = {
+        currentprice: product.currentprice,
+        description: product.description,
+        icon: product.icon,
+        id: uuid(),
+        name: product.name,
+        picture: product.picture,
+        promo: product.promo,
+        quantity: product.quantity,
+        size: this.radio
+      }
+      this.$store.commit('addToChart', newProduct)
       // -> 1addToChart
     }
   },

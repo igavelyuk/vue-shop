@@ -26,12 +26,8 @@
       <template slot="end">
           <b-navbar-item tag="div">
               <div class="buttons">
-                  <a class="button is-primary">
-                      <b-icon class="icon" pack="fas" icon="user-plus"></b-icon><strong>Sign up</strong>
-                  </a>
-                  <a class="button is-light">
-                      <b-icon class="icon" pack="fas" icon="sign-in-alt"></b-icon>Search
-                  </a>
+                <b-button @click="SignUp" type="is-primary" pack="fas" icon-left="user-plus">Sign up</b-button>
+                <b-button @click="LogIn" type="is-primary" outlined pack="fas" icon-left="sign-in-alt">Log in</b-button>
               </div>
           </b-navbar-item>
       </template>
@@ -42,6 +38,7 @@
 import Vue from 'vue'
 import Buefy from 'buefy'
 import VueRouter from 'vue-router'
+import store from '../store'
 
 Vue.use(Buefy, {
   defaultIconComponent: 'vue-fontawesome',
@@ -60,17 +57,25 @@ export default {
   computed: {
     searchProduct () {
       if (this.searchWord.length <= 0) {
-        this.$store.commit('restoreBackup')
+        store.commit('restoreBackup')
       }
       console.log('-----------------------')
       // console.log(this.searchWord)
-      return this.$store.commit('filterProducts', this.searchWord)
+      return store.commit('filterProducts', this.searchWord)
     }
   },
   data () {
     return {
       brand_name: 'Пицца Панда БС',
       searchWord: ''
+    }
+  },
+  methods: {
+    SignUp () {
+      this.$router.push({ path: 'signup' })
+    },
+    LogIn () {
+      this.$router.push({ path: 'login' })
     }
   }
 }

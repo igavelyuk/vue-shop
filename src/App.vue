@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-      <Menu />
+    <b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
+    <Menu />
     <div class="container is-fullhd">
-      <div class="notification">
+      <div class="maincontainer notification">
         <router-view/>
         <Footer msg="This is a footer component" copyInfo="Opensource" />
       </div>
@@ -20,13 +21,19 @@ export default {
   name: 'home',
   data () {
     return {
-      status: false
+      status: false,
+      isLoading: false,
+      isFullPage: true
     }
   },
   created: function () {
     if (this.status === false) {
       this.loadData()
       this.status = true
+      this.isLoading = true
+      setTimeout(() => {
+        this.isLoading = false
+      }, 1 * 1000)
     }
   },
   methods: {
@@ -50,6 +57,9 @@ export default {
           store.commit('addToBackup', node)
         })
       })
+      // this.loadData()
+      // this.status = true
+      // this.isLoading = false
     }
   },
   components: {
@@ -85,7 +95,7 @@ export default {
       }
     }
   }
-  .notification {
+  .maincontainer {
     background: #ffffff!important;
   }
 
