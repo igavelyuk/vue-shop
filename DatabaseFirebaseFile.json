@@ -1,0 +1,62 @@
+{
+  "products": [
+    {
+      "currentprice": {
+        "m": 129,
+        "s": 79,
+        "xl": 199
+      },
+      "description": "соус Бешамель, сир Моцарелла, масліни, гриби, ковбаса Пепероні",
+      "icon": "https://firebasestorage.googleapis.com/v0/b/pizzapanda-cad4c.appspot.com/o/Pictures%2Fpaparazzi.jpg?alt=media&token=190bbb38-5d78-406f-8cb7-4d800f9d6196",
+      "id": 1,
+      "lastprice": {
+        "m": 140,
+        "s": 110,
+        "xl": 210
+      },
+      "name": "Папарацци",
+      "picture": "https://firebasestorage.googleapis.com/v0/b/pizzapanda-cad4c.appspot.com/o/Pictures%2Fpaparazzi.jpg?alt=media&token=190bbb38-5d78-406f-8cb7-4d800f9d6196",
+      "promo": {
+        "m": true,
+        "s": false,
+        "xl": true
+      },
+      "quantity": 1,
+      "size": {
+        "m": 74,
+        "s": 79,
+        "xl": 89
+      }
+    },
+    {
+      "currentprice": {
+        "m": 135,
+        "s": 0,
+        "xl": 169
+      },
+      "description": "Котлета-бургер, Бекон, сир Моцарела, сир Чедер, огірок маринований, цибуля, соус вершковий, гірчиця (негостра)",
+      "icon": "https://firebasestorage.googleapis.com/v0/b/pizzapanda-cad4c.appspot.com/o/Pictures%2Fpitsburg.jpeg?alt=media&token=41dfcb3e-d3f0-4f55-a2e1-9c7fa52f38df",
+      "id": 2,
+      "lastprice": {
+        "m": 140,
+        "s": 110,
+        "xl": 170
+      },
+      "name": "Пицбург",
+      "picture": "https://firebasestorage.googleapis.com/v0/b/pizzapanda-cad4c.appspot.com/o/Pictures%2Fpitsburg.jpeg?alt=media&token=41dfcb3e-d3f0-4f55-a2e1-9c7fa52f38df",
+      "promo": {
+        "m": true,
+        "s": false,
+        "xl": true
+      },
+      "quantity": 1,
+      "size": {
+        "m": 74,
+        "s": 79,
+        "xl": 89
+      }
+    }
+  ],
+  "productsChart": [
+  ]
+}
