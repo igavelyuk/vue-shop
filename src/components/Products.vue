@@ -3,7 +3,8 @@
   <div class="card">
     <div class="card-image">
       <figure class="image is-4by3">
-        <img :src="image" alt="Placeholder image"/>
+        <img :src= "product.picture" alt="Placeholder image"/>
+        {{product.picture}}
         <img class="brand-overlay" :src="brandOverlay" alt="Placeholder image"/>
       </figure>
     </div>
@@ -11,24 +12,23 @@
     <p class="title is-4">{{product.name}}</p>
     <div class="media">
       <div class="media-left">
-        <SelectionOrder v-bind:product="product"/>
+        <SelectionOrder v-bind:product="product" v-on:size-select="selectPrice" v-bind:orderprice="select"  v-bind:orderpricelast="lastSelectedPrice" v-bind:orderpromo="currentPromo"/>
       <div class="media-content">
       </div>
-        <p class="subtitle is-6">Price: <b>{{product.currentprice}}</b>
-          <i v-if="product.promo" class="promo-false" v-bind:class="{'promo-true':product.promo}">
-          {{product.lastprice}}
-        </i>
+        <p class="subtitle is-6">Price: <b>{{select}}</b>
+          <i v-if="currentPromo" class="promo-true">{{lastSelectedPrice}}</i>
+          <i v-else class="promo-false"></i>
       </p>
-      <b class="is-6 sale">Sale</b>
+      <b v-if="currentPromo" class="is-6 sale">Sale</b>
+      <b v-else class="is-6 sale">Standart price</b>
       </div>
     </div>
 
-    <div class="content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-      <a href="#">#css</a> <a href="#">#responsive</a>
+    <div class="content"> <b>Ингридиенты: </b>
+      {{product.description}}
       <br>
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+      <b>Дата и время: </b>
+      <time datetime="product.time">{{product.time}}</time>
     </div>
   </div>
 </div>
@@ -59,12 +59,36 @@ import SelectionOrder from '../components/SelectionOrder.vue'
 
 export default {
   name: 'Product',
-  methods: {
-  },
   components: {
     SelectionOrder
   },
   props: ['product'],
+  methods: {
+    selectPrice (size) {
+      console.log(size)
+      switch (size) {
+        case '24cm':
+          this.select = this.product.currentprice.s
+          this.lastSelectedPrice = this.product.lastprice.s
+          this.currentPromo = this.product.promo.s
+          break
+        case '30cm':
+          this.select = this.product.currentprice.m
+          this.lastSelectedPrice = this.product.lastprice.m
+          this.currentPromo = this.product.promo.m
+          break
+        case '35cm':
+          this.select = this.product.currentprice.xl
+          this.lastSelectedPrice = this.product.lastprice.xl
+          this.currentPromo = this.product.promo.xl
+          break
+        default:
+          this.select = this.product.currentprice.xl
+          this.lastSelectedPrice = this.product.lastprice.xl
+          this.currentPromo = this.product.promo.xl
+      }
+    }
+  },
   msg: {
     type: String,
     required: false
@@ -73,7 +97,10 @@ export default {
     return {
       image: image,
       brandOverlay: brandOverlay,
-      chartIcon: chartIcon
+      chartIcon: chartIcon,
+      select: this.product.currentprice.xl,
+      lastSelectedPrice: this.product.lastprice.xl,
+      currentPromo: this.product.promo.xl
     }
   }
 }
@@ -104,8 +131,12 @@ export default {
 }
 .promo-true {
   text-decoration: line-through;
+  color: #ff0000;
 }
-.promo-false, .sale {
+.promo-false{
+  color: #ffffff;
+}
+.sale {
   color: #ff0000;
 }
 // $promo-false: #ff0000;

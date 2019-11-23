@@ -15,7 +15,9 @@ export default {
     Product
   },
   props: {
-    product: [],
+    product: {
+      product: []
+    },
     msg: {
       type: String,
       required: false

@@ -1,22 +1,22 @@
 <template>
   <section>
     <div class="block">
-     <b-radio class="extra-paddings" v-model="radio"
+     <b-radio @input="$emit('size-select',radio)" class="extra-paddings" v-bind:class="{'radio-active':radio==='35cm' }" v-model="radio"
      name="name"
      type="is-danger"
      native-value="35cm">
      XL
     </b-radio>
-    <b-radio class="extra-paddings" v-model="radio"
+    <b-radio @input="$emit('size-select',radio)" class="extra-paddings" v-bind:class="{'radio-active':radio==='30cm' }" v-model="radio"
      name="name"
      type="is-success"
      native-value="30cm">
-     M &nbsp;
+     M
      </b-radio>
-     <b-radio class="extra-paddings" v-model="radio"
+     <b-radio @input="$emit('size-select',radio)" class="extra-paddings" v-bind:class="{'radio-active':radio==='24cm' }" v-model="radio"
      name="name"
      native-value="24cm">
-     S &nbsp;
+     S
      </b-radio>
        <b-button class="extra-paddings-button-chart" @click="addProduct(product)" type="is-primary" outlined pack="fas" icon-left="shopping-cart"></b-button>
      </div>
@@ -51,14 +51,16 @@ export default {
           this.$router.push({ path: 'chart' })
         }
       })
+      // Recreate new object, othervise we change original object
       const newProduct = {
-        currentprice: product.currentprice,
+        currentprice: this.orderprice,
+        lastprice: this.orderpricelast,
         description: product.description,
         icon: product.icon,
         id: uuid(),
         name: product.name,
         picture: product.picture,
-        promo: product.promo,
+        promo: this.orderpromo,
         quantity: product.quantity,
         size: this.radio
       }
@@ -66,7 +68,23 @@ export default {
       // -> 1addToChart
     }
   },
-  props: ['product'],
+  props: {
+    product: {
+      product: []
+    },
+    orderprice: {
+      type: Number,
+      required: false
+    },
+    orderpricelast: {
+      type: Number,
+      required: false
+    },
+    orderpromo: {
+      type: Boolean,
+      required: false
+    }
+  },
   components: {},
   data: function () {
     return {
@@ -89,11 +107,18 @@ export default {
 }
 .extra-paddings{
   padding-top: 12px;
-  padding-bottom: 4px;
+  padding-bottom: 12px;
+  height: 45px;
+  width: 60px;
 }
 .extra-paddings-button-chart{
   margin-left: 20px;
   height: 44px;
   width: 44px;
+}
+.radio-active{
+  border: 1px solid #9400ff;
+  border-radius: 5px;
+
 }
 </style>

@@ -35,9 +35,8 @@
               <td>
                 {{ product.currentprice }}
               </td>
-              <td class = "striked">
-                {{ product.lastprice }}
-              </td>
+              <td v-if="product.promo" class = "striked">{{ product.lastprice }} </td>
+              <td v-else > --- </td>
               <td>
                 <div class="buttons">
                   <!-- <b-button @click="$emit('delProduct',product.id)" class="buttons" rounded type="is-danger" outlined>&#10060;</b-button> -->
