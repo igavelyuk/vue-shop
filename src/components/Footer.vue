@@ -31,6 +31,7 @@ export default {
     margin-top: 20px;
     background: #f0f0f0;
     flex-shrink: 0;
+    width: 100%;
 
     h1 {
       margin:0;

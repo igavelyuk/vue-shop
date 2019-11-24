@@ -38,7 +38,7 @@ export default {
         background: #ffffff;
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        grid-gap: 1em;
+        grid-gap: 0em;
     }
     .main > div {
         background: #eeeeee;
@@ -49,7 +49,7 @@ export default {
         padding: 0.1em;
     }
 }
-@media (min-height: 815pxpx), screen and (orientation: landscape){
+@media (min-height: 815px), screen and (orientation: landscape){
     .main {
         background: #ffffff;
         display: grid;

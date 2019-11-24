@@ -3,7 +3,7 @@
   <div class="card">
     <div class="card-image">
       <figure class="image is-4by3">
-        <img :src= "product.picture" alt="Placeholder image"/>
+        <img class="image-proper" :src= "product.picture" alt="Placeholder image"/>
         {{product.picture}}
         <img class="brand-overlay" :src="brandOverlay" alt="Placeholder image"/>
       </figure>
@@ -110,6 +110,10 @@ export default {
 // *{
 //   outline: 1px dotted red;
 // }
+.image{
+}
+.image-proper{
+}
 .extra-paddings{
   padding-top: 3px;
   padding-bottom: 3px;
@@ -139,6 +143,7 @@ export default {
 .sale {
   color: #ff0000;
 }
+
 // $promo-false: #ff0000;
 // $chart-icon-bg: #ff0000;
 // $chart-icon-border: #000000;
