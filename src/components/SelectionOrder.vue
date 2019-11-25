@@ -51,18 +51,25 @@ export default {
           this.$router.push({ path: 'chart' })
         }
       })
+      var today = new Date()
+      // var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+      // var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
+      // var dateTime = date + ' ' + time
       // Recreate new object, othervise we change original object
+      const uuidRecord = uuid()
+
       const newProduct = {
         currentprice: this.orderprice,
         lastprice: this.orderpricelast,
         description: product.description,
         icon: product.icon,
-        id: uuid(),
+        id: uuidRecord,
         name: product.name,
         picture: product.picture,
         promo: this.orderpromo,
         quantity: product.quantity,
-        size: this.radio
+        size: this.radio,
+        date: today
       }
       this.$store.commit('addToChart', newProduct)
       // -> 1addToChart

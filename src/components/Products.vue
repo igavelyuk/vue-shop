@@ -4,7 +4,6 @@
     <div class="card-image">
       <figure class="image is-4by3">
         <img class="image-proper" :src= "product.picture" alt="Placeholder image"/>
-        {{product.picture}}
         <img class="brand-overlay" :src="brandOverlay" alt="Placeholder image"/>
       </figure>
     </div>
