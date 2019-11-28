@@ -18,7 +18,8 @@
      native-value="24cm">
      S
      </b-radio>
-       <b-button class="extra-paddings-button-chart" @click="addProduct(product)" type="is-primary" outlined pack="fas" icon-left="shopping-cart"></b-button>
+       <b-button v-if="orderprice>0" class="extra-paddings-button-chart" @click="addProduct(product)" type="is-primary" outlined pack="fas" icon-left="shopping-cart"></b-button>
+       <b-button v-else disabled class="extra-paddings-button-chart" type="is-primary" outlined pack="fas" icon-left="shopping-cart"></b-button>
      </div>
      <p class="content">
        <b>Pizza size:</b>
