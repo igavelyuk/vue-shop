@@ -2,7 +2,7 @@
 <div class="">
   <b-steps class="" v-model="activeStep" :animated="isAnimated" :has-navigation="hasNavigation" :icon-prev="prevIcon" :icon-next="nextIcon">
     <b-step-item label="Check" :clickable="isStepsClickable">
-      <h1 class="title has-text-centered">Check your shopping cart, Total {{countTotalPrice}} USD</h1>
+      <h1 class="title has-text-centered">Додано до кошика на сумму {{countTotalPrice}} грн</h1>
       <div class="columns">
         <div class="column">
           <b-table :data="products">
@@ -16,40 +16,40 @@
                 {{(products.row.id).toString().slice(0,4)}}
               </b-table-column>
 
-              <b-table-column field="name" label="Name">
+              <b-table-column field="name" label="Назва">
                 {{ products.row.name }}
               </b-table-column>
 
-              <b-table-column field="picture" label="Picture">
+              <b-table-column field="picture" label="Іконка">
                 <img :src="products.row.picture" width="40px" height="auto" alt="Product picture" />
               </b-table-column>
 
-              <b-table-column field="size" label="Size">
+              <b-table-column field="size" label="Розмір">
                 {{ products.row.size }}
               </b-table-column>
 
-              <b-table-column field="quantity" width="130px" label="Quantity">
+              <b-table-column field="quantity" width="130px" label="Кількість">
                 <b-field>
                   <b-numberinput size="is-small" type="is-success" v-model="products.row.quantity" v-on:input="changeOrderQuantity(products.row)"></b-numberinput>
                 </b-field>
               </b-table-column>
 
-              <b-table-column field="currentprice" label="Price">
+              <b-table-column field="currentprice" label="Ціна">
                 <b>{{ products.row.currentprice}}</b>
               </b-table-column>
 
-              <b-table-column label="Promo">
+              <b-table-column label="Акційний товар">
                 <span>
                   <b-icon pack="fas" :icon="products.row.promo ? 'check-circle' : 'times-circle'">
                   </b-icon>
                 </span>
               </b-table-column>
 
-              <b-table-column field="lastprice" width="20" label="Lastprice">
+              <b-table-column field="lastprice" width="20" label="Попередня ціна">
                 <i class="striked" v-if="products.row.promo"> {{ products.row.lastprice }} </i>
               </b-table-column>
 
-              <b-table-column field="date" label="Date" centered>
+              <b-table-column field="date" label="Дата" centered>
                 <span class="tag is-success">
                   {{ new Date(products.row.date).toLocaleDateString() }} {{new Date(products.row.date).toLocaleTimeString()}}
                 </span>
@@ -69,7 +69,7 @@
                     <b-icon icon="luggage-cart" size="is-large">
                     </b-icon>
                   </p>
-                  <p>Nothing here.</p>
+                  <p>Нічого не додано</p>
                 </div>
               </section>
             </template>
