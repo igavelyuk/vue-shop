@@ -5,7 +5,7 @@
     <div class="container is-fullhd">
       <div class="maincontainer notification">
         <router-view/>
-        <Footer msg="This is a footer component" copyInfo="Opensource" />
+        <Footer msg="Розроблено для Піцца Панди БЦ" copyInfo="gavelWeb 2019" />
       </div>
     </div>
   </div>

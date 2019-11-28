@@ -18,8 +18,8 @@
           <i v-if="currentPromo" class="promo-true">{{lastSelectedPrice}}</i>
           <i v-else class="promo-false"></i>
       </p>
-      <b v-if="currentPromo" class="is-6 sale">Sale</b>
-      <b v-else class="is-6 sale">Standart price</b>
+      <b v-if="currentPromo" class="is-6 sale">Зниждка!</b>
+      <b v-else class="is-6">Без знижки</b>
       </div>
     </div>
 

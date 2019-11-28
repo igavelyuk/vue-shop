@@ -41,9 +41,9 @@ export default {
       // console.log(product)
       // console.log('-------------PRODUCT--------------')
       this.$buefy.snackbar.open({
-        message: 'Product added to chart',
+        message: 'Додано до кошика',
         position: 'is-bottom',
-        actionText: 'Go to Chart',
+        actionText: 'Переглянути покупки',
         onAction: () => {
           this.$buefy.toast.open({
             message: 'Action pressed',
