@@ -22,7 +22,7 @@
        <b-button v-else disabled class="extra-paddings-button-chart" type="is-primary" outlined pack="fas" icon-left="shopping-cart"></b-button>
      </div>
      <p class="content">
-       <b>Pizza size:</b>
+       <b>Розмір піцци:</b>
      {{ radio }}
      </p>
   </section>

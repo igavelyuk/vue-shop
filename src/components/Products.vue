@@ -14,11 +14,11 @@
         <SelectionOrder v-bind:product="product" v-on:size-select="selectPrice" v-bind:orderprice="select"  v-bind:orderpricelast="lastSelectedPrice" v-bind:orderpromo="currentPromo"/>
       <div class="media-content">
       </div>
-        <p class="subtitle is-6">Price: <b>{{select}}</b>
-          <i v-if="currentPromo" class="promo-true">{{lastSelectedPrice}}</i>
+        <p class="subtitle is-6">Ціна: <b>{{select}}</b> грн
+          <i v-if="currentPromo" class="promo-true">{{lastSelectedPrice}} грн</i>
           <i v-else class="promo-false"></i>
       </p>
-      <b v-if="currentPromo" class="is-6 sale">Зниждка!</b>
+      <b v-if="currentPromo" class="is-6 sale">Знижка!</b>
       <b v-else class="is-6">Без знижки</b>
       </div>
     </div>
@@ -134,15 +134,15 @@ export default {
 }
 .promo-true {
   text-decoration: line-through;
-  color: #ff0000;
+  color: #cc0000;
 }
 .promo-false{
   color: #ffffff;
 }
 .sale {
-  color: #ff0000;
+  color: #cc0000;
 }
-
+// ////////////////////////////////////////////////
 // $promo-false: #ff0000;
 // $chart-icon-bg: #ff0000;
 // $chart-icon-border: #000000;

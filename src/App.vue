@@ -2,10 +2,10 @@
   <div id="app">
     <b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
     <Menu />
-    <div class="container is-fullhd">
+    <div class="container is-widescreen is-fullhd">
       <div class="maincontainer notification">
         <router-view/>
-        <Footer msg="Розроблено для Піцца Панди БЦ" copyInfo="gavelWeb 2019" />
+        <Footer msg="" copyInfo="baDev 2019" />
       </div>
     </div>
   </div>

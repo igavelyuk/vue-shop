@@ -1,7 +1,7 @@
 <template>
 <div class="">
   <b-steps class="" v-model="activeStep" :animated="isAnimated" :has-navigation="hasNavigation" :icon-prev="prevIcon" :icon-next="nextIcon">
-    <b-step-item label="Check" :clickable="isStepsClickable">
+    <b-step-item label="Перевірка продуктів" :clickable="isStepsClickable">
       <h1 class="title has-text-centered">Додано до кошика на сумму {{countTotalPrice}} грн</h1>
       <div class="columns">
         <div class="column">
@@ -30,12 +30,12 @@
 
               <b-table-column field="quantity" width="130px" label="Кількість">
                 <b-field>
-                  <b-numberinput size="is-small" type="is-success" v-model="products.row.quantity" v-on:input="changeOrderQuantity(products.row)"></b-numberinput>
+                  <b-numberinput min="0" max="10" size="is-small" type="is-success" v-model="products.row.quantity" v-on:input="changeOrderQuantity(products.row)"></b-numberinput>
                 </b-field>
               </b-table-column>
 
               <b-table-column field="currentprice" label="Ціна">
-                <b>{{ products.row.currentprice}}</b>
+                <b>{{ products.row.currentprice * products.row.quantity }}</b>
               </b-table-column>
 
               <b-table-column label="Акційний товар">
@@ -77,44 +77,73 @@
         </div>
       </div>
     </b-step-item>
-    <b-step-item label="Adress" :clickable="isStepsClickable" :type="{'is-success': isProfileSuccess}">
-      <h1 class="title has-text-centered">Adress</h1>
-      <section>
-        <b-field>
-          <b-input placeholder="Email" type="email"></b-input>
-        </b-field>
+    <b-step-item label="Доставка чи Самовинос" :clickable="isStepsClickable" :type="{'is-success': isProfileSuccess}">
+      <h1 class="title has-text-centered">
+        <div class="field">
+           <b-switch v-model="isDelivery"
+                true-value="Доставка +50 грн"
+                false-value="Самовинос">
+                {{ isDelivery }}
+           </b-switch>
+       </div>
+      </h1>
 
+      <section v-if="isDelivery==='Доставка +50 грн'">
         <b-field>
-          <b-input placeholder="Number" type="number" min="10" max="20">
+          <b-input placeholder="Біла Церква" value="Біла Церква">
           </b-input>
         </b-field>
 
         <b-field>
-          <b-input placeholder="User handle (custom validation for only lowercase)" type="text" required validation-message="Only lowercase is allowed" pattern="[a-z]*">
+          <b-input placeholder="Адреса" type="text" validation-message="Обов'язкове поле"></b-input>
+        </b-field>
+
+        <b-field>
+          <b-input placeholder="Номер Будинку" type="number" min="10" max="20">
           </b-input>
         </b-field>
 
         <b-field>
-          <b-input placeholder="URL" type="url"></b-input>
+          <b-input placeholder="Ваше ім'я'" type="text" required validation-message="Обов'язкове поле">
+          </b-input>
         </b-field>
 
         <b-field>
-          <b-input type="textarea" minlength="10" maxlength="100" placeholder="Maxlength automatically counts characters">
+          <b-input placeholder="0666540976" type="telephone" required validation-message="Обов'язкове поле"></b-input>
+        </b-field>
+
+        <b-field>
+          <b-input type="textarea" minlength="10" maxlength="100" placeholder="Додаткове повідомлення для Піцци Панди">
+          </b-input>
+        </b-field>
+      </section>
+      <section v-else>
+        <b-field>
+          <b-input placeholder="Ваше ім'я'" type="text" required validation-message="Обов'язкове поле">
+          </b-input>
+        </b-field>
+
+        <b-field>
+          <b-input placeholder="0666540976" type="telephone" required validation-message="Обов'язкове поле"></b-input>
+        </b-field>
+
+        <b-field>
+          <b-input type="textarea" minlength="10" maxlength="100" placeholder="Додаткове повідомлення для Піцци Панди">
           </b-input>
         </b-field>
       </section>
     </b-step-item>
-    <b-step-item label="Finish" :clickable="isStepsClickable" disabled>
-      <h1 class="title has-text-centered">Finish</h1>
-      <b-button size="is-large" icon-left="hand-point-up">
-        Ship It
+    <b-step-item label="Купівля" :clickable="isStepsClickable" disabled>
+      <h1 class="title has-text-centered">Купівля</h1>
+      <b-button size="is-large" type="is-danger" icon-left="hand-point-up">
+        Підтвердити
       </b-button>
     </b-step-item>
     <template v-if="customNavigation" slot="navigation" slot-scope="{previous, next}">
       <b-button outlined type="is-danger" icon-pack="fas" icon-left="backward" :disabled="previous.disabled" @click.prevent="previous.action">
         Previous
       </b-button>
-      <b-button outlined type="is-success" icon-pack="fas" icon-right="forward" :disabled="next.disabled" @click.prevent="next.action">
+      <b-button outlined type="is-primary" icon-pack="fas" icon-right="forward" :disabled="next.disabled" @click.prevent="next.action">
         Next
       </b-button>
 </template>
@@ -135,10 +164,11 @@ export default {
       customNavigation: false,
       prevIcon: 'chevron-left',
       nextIcon: 'chevron-right',
-      isStepsClickable: false,
+      isStepsClickable: true,
       isProfileSuccess: false,
       totalPrice: 200,
-      counterX: 1
+      counterX: 1,
+      isDelivery: 'Доставка +50 грн'
     }
   },
   methods: {
@@ -157,7 +187,7 @@ export default {
       console.log(currentOrder)
       // if (currentOrder.quantity >= 0 && currentOrder.quantity >= 0) {
       const newProduct = {
-        currentprice: currentOrder.currentprice * currentOrder.quantity,
+        currentprice: currentOrder.currentprice,
         lastprice: currentOrder.lastprice,
         description: currentOrder.description,
         icon: currentOrder.icon,
@@ -167,7 +197,8 @@ export default {
         promo: currentOrder.promo,
         quantity: currentOrder.quantity,
         size: currentOrder.size,
-        date: currentOrder.date
+        date: currentOrder.date,
+        finalprice: currentOrder.currentprice * currentOrder.quantity
       }
       this.$store.commit('delete', currentOrder.id)
       this.$store.commit('addToChart', newProduct)
@@ -179,7 +210,7 @@ export default {
       const Total = this.$store.getters.productsChart
       var result = 0
       for (var i = 0; i < Total.length; i++) {
-        result += Total[i].currentprice
+        result += Total[i].currentprice * Total[i].quantity
       }
       return result
     },
