@@ -18,8 +18,11 @@
           <i v-if="currentPromo" class="promo-true">{{lastSelectedPrice}} грн</i>
           <i v-else class="promo-false"></i>
       </p>
-      <b v-if="currentPromo" class="is-6 sale">Знижка!</b>
-      <b v-else class="is-6">Без знижки</b>
+      <ol>
+        <li v-if="currentPromo" class="is-6"><b class="sale">Знижка!</b>
+        <li v-else> <b class="is-6">Без знижки</b></li>
+        <li><b v-if="superSale" class="is-6 sale">{{superSale.description}} <br/> {{superSale.time_start}}:00 - {{superSale.time_end}}:00 <br/> при перевищенні {{superSale.price_over}} грн,<br/> {{superSale.sale}} % на одну<br/> за рандомом.</b></li>
+      </ol>
       </div>
     </div>
 
@@ -99,7 +102,14 @@ export default {
       chartIcon: chartIcon,
       select: this.product.currentprice.xl,
       lastSelectedPrice: this.product.lastprice.xl,
-      currentPromo: this.product.promo.xl
+      currentPromo: this.product.promo.xl,
+      superSale: this.$store.getters.sale[0]
+    }
+  },
+  computed: {
+    superSaleX () {
+      console.log(this.$store.getters.sale)
+      return this.$store.getters.sale
     }
   }
 }

@@ -135,7 +135,7 @@
     </b-step-item>
     <b-step-item label="Купівля" :clickable="isStepsClickable" disabled>
       <h1 class="title has-text-centered">Купівля</h1>
-      <b-button size="is-large" type="is-danger" icon-left="hand-point-up">
+      <b-button size="is-large" type="is-danger" icon-left="hand-point-up" @click="finishItModal=true">
         Підтвердити
       </b-button>
     </b-step-item>
@@ -147,6 +147,20 @@
         Next
       </b-button>
 </template>
+<b-modal :active.sync="finishItModal" :width="640" scroll="keep">
+            <div class="card">
+                <p>Через декілька хвилин вам передзвонить оператор</p>
+                <div class="card-content">
+                    <div class="content">
+                        Дякую за покупку, з вами зв'яжется наш оператор, відвідайте наш інстаграм та згадуйте нас в інстаграмі <a href="https://www.instagram.com/pandapizzabc/">@pizzapandabc</a>.
+                        Також використовуйте хештеги <a>#pizzapandabc</a> <a>#pizzatime</a> <a>#піццабілацерква</a>
+                        Таким чином ми можемо запропонувати вам додаткові можливості економії на наших продуктах.
+                        <br>
+                        <small>Можете закрити це вікно, все пройшло успішно</small>
+                    </div>
+                </div>
+            </div>
+        </b-modal>
 </b-steps>
   </div>
 </template>
@@ -168,7 +182,8 @@ export default {
       isProfileSuccess: false,
       totalPrice: 200,
       counterX: 1,
-      isDelivery: 'Доставка +50 грн'
+      isDelivery: 'Доставка +50 грн',
+      finishItModal: false
     }
   },
   methods: {
@@ -181,7 +196,6 @@ export default {
       this.$store.commit('delete', ids)
       // -> 1
     },
-
     changeOrderQuantity (currentOrder) {
       // const uuidRecord = uuid()
       console.log(currentOrder)
@@ -203,6 +217,8 @@ export default {
       this.$store.commit('delete', currentOrder.id)
       this.$store.commit('addToChart', newProduct)
       // }
+    },
+    finishIt () {
     }
   },
   computed: {

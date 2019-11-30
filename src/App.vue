@@ -56,6 +56,14 @@ export default {
           store.commit('addToProducts', node)
           store.commit('addToBackup', node)
         })
+        nodes = JSON.parse(JSON.stringify(data.sale))
+        console.log(nodes)
+        console.log(nodes.length)
+        console.log(nodes[0])
+        // console.log(fixedJson.products)
+        nodes.forEach((node) => {
+          store.commit('addToSale', node)
+        })
       })
       // this.loadData()
       // this.status = true
