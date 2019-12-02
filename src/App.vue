@@ -5,7 +5,7 @@
     <div class="container is-widescreen is-fullhd">
       <div class="maincontainer notification">
         <router-view/>
-        <Footer msg="" copyInfo="baDev 2019" />
+        <Footer msg="" copyInfo="gavelWeb 2019" />
       </div>
     </div>
   </div>

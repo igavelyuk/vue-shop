@@ -1,4 +1,4 @@
-<template>
+``<template>
 <div class="product">
   <div class="card">
     <div class="card-image">
@@ -21,7 +21,7 @@
       <ol>
         <li v-if="currentPromo" class="is-6"><b class="sale">Знижка!</b>
         <li v-else> <b class="is-6">Без знижки</b></li>
-        <li><b v-if="superSale" class="is-6 sale">{{superSale.description}} <br/> {{superSale.time_start}}:00 - {{superSale.time_end}}:00 <br/> при перевищенні {{superSale.price_over}} грн,<br/> {{superSale.sale}} % на одну<br/> за рандомом.</b></li>
+        <li><b v-if="checkHappyHours()" class="is-6 sale">{{superSale.description}} <br/> {{superSale.time_start}}:00 - {{superSale.time_end}}:00 <br/> при перевищенні {{superSale.price_over}} грн,<br/> {{superSale.sale}} % на одну<br/> за рандомом.</b></li>
       </ol>
       </div>
     </div>
@@ -89,6 +89,24 @@ export default {
           this.lastSelectedPrice = this.product.lastprice.xl
           this.currentPromo = this.product.promo.xl
       }
+    },
+    checkHappyHours () {
+      const globalDate = new Date()
+      const getDayOfWeek = globalDate.getDay()
+      const getHours = globalDate.getHours()
+      const destructionDoW = this.superSale.dayofweekpromo.split('')
+      console.log(getDayOfWeek)
+      console.log(getHours)
+      console.log(parseInt(this.superSale.time_start))
+      console.log(destructionDoW)
+      if (getDayOfWeek >= parseInt(destructionDoW[0]) && getDayOfWeek <= parseInt(destructionDoW[1])) {
+        if (getHours >= parseInt(this.superSale.time_start) && getHours <= parseInt(this.superSale.time_end)) {
+          this.$store.commit('dailyPromo', true)
+          return true
+        } else {
+          return false
+        }
+      }
     }
   },
   msg: {
@@ -103,13 +121,8 @@ export default {
       select: this.product.currentprice.xl,
       lastSelectedPrice: this.product.lastprice.xl,
       currentPromo: this.product.promo.xl,
-      superSale: this.$store.getters.sale[0]
-    }
-  },
-  computed: {
-    superSaleX () {
-      console.log(this.$store.getters.sale)
-      return this.$store.getters.sale
+      superSale: this.$store.getters.sale[0],
+      activeDailyPromo: this.$store.getters.dailypromo
     }
   }
 }

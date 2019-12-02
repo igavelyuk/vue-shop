@@ -10,7 +10,7 @@
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">Працюемо з</p>
-      <p class="title">1998</p>
+      <p class="title">2016</p>
     </div>
   </div>
   <div class="level-item has-text-centered">
@@ -57,7 +57,7 @@
 <div class="columns">
   <div class="column has-text-centered">
     <p v-if="msg">{{msg}}</p>
-    <p v-if="copyInfo">Copyright &copy; <a href="https://bDuv.site">{{copyInfo}}</a></p>
+    <p v-if="copyInfo">Copyright &copy; <a href="https://gavelweb.site">{{copyInfo}}</a></p>
   </div>
 </div>
 </footer>

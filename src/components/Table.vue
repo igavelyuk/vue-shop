@@ -86,6 +86,7 @@
                 {{ isDelivery }}
            </b-switch>
        </div>
+       <div>Загальна сума {{reCalculate()}}</div>
       </h1>
 
       <section v-if="isDelivery==='Доставка +50 грн'">
@@ -131,11 +132,13 @@
           <b-input type="textarea" minlength="10" maxlength="100" placeholder="Додаткове повідомлення для Піцци Панди">
           </b-input>
         </b-field>
+        <br/><br/><br/><br/><br/><br/>
       </section>
     </b-step-item>
     <b-step-item label="Купівля" :clickable="isStepsClickable" disabled>
       <h1 class="title has-text-centered">Купівля</h1>
-      <b-button size="is-large" type="is-danger" icon-left="hand-point-up" @click="finishItModal=true">
+      <b-button size="is-large" type="is-danger" icon-left="hand-point-up" @click="finishIt" >
+        <!-- @click="finishItModal=true" -->
         Підтвердити
       </b-button>
     </b-step-item>
@@ -166,7 +169,7 @@
 </template>
 
 <script>
-// import uuid from 'uuid'
+import axios from 'axios'
 
 export default {
   data () {
@@ -183,10 +186,18 @@ export default {
       totalPrice: 200,
       counterX: 1,
       isDelivery: 'Доставка +50 грн',
-      finishItModal: false
+      finishItModal: false,
+      activeDailyPromo: this.$store.getters.dailypromo
     }
   },
   methods: {
+    reCalculate () {
+      if (this.isDelivery === 'Доставка +50 грн') {
+        return this.countTotalPrice + 50
+      } else {
+        return this.countTotalPrice
+      }
+    },
     // deleteProduct (ids) {
     //   return this.$store.state.commit('deletex', 0)
     // },
@@ -219,12 +230,39 @@ export default {
       // }
     },
     finishIt () {
+      axios.post('https://pizzapandabc.com.ua/a/message/a.php', {
+        products: 'Fred',
+        total_price: '999'
+      })
+        .then(function (response) {
+          this.finishItModal = this.responce
+        })
+        .catch(function (error) {
+          this.finishItModal = false
+          console.log(error)
+        })
+    },
+    setSaleDaily () {
+      if (this.activeDailyPromo === true) {
+        const Total = this.$store.getters.productsChart
+        var nProduct = Total.currentprice.sort()
+        nProduct.forEach(id => {
+          console.log(id.currentprice)
+        })
+      }
     }
   },
   computed: {
     countTotalPrice () {
       const Total = this.$store.getters.productsChart
       var result = 0
+      // if (this.activeDailyPromo === true) {
+      //   const TotalX = this.$store.getters.productsChart
+      //   console.log(TotalX)
+      //   var nProduct = TotalX.currentprice.sort()
+      //   console.log(nProduct)
+      // }
+      //
       for (var i = 0; i < Total.length; i++) {
         result += Total[i].currentprice * Total[i].quantity
       }

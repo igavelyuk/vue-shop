@@ -7,9 +7,13 @@ export default ({
     productsChart: [
     ],
     sale: [
-    ]
+    ],
+    activedailyPromo: false
   },
   mutations: {
+    dailyPromo (state, payload) {
+      state.activedailyPromo = payload
+    },
     addToChart (state, payload) {
       state.productsChart.push(payload)
     },
@@ -51,6 +55,9 @@ export default ({
     },
     sale (state) {
       return state.sale
+    },
+    dailypromo (state) {
+      return state.activedailyPromo
     },
     productsChart (state) {
       return state.productsChart
