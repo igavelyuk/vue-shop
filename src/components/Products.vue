@@ -1,4 +1,4 @@
-<template>
+``<template>
 <div class="product">
   <div class="card">
     <div class="card-image">
@@ -14,12 +14,15 @@
         <SelectionOrder v-bind:product="product" v-on:size-select="selectPrice" v-bind:orderprice="select"  v-bind:orderpricelast="lastSelectedPrice" v-bind:orderpromo="currentPromo"/>
       <div class="media-content">
       </div>
-        <p class="subtitle is-6">Price: <b>{{select}}</b>
-          <i v-if="currentPromo" class="promo-true">{{lastSelectedPrice}}</i>
+        <p class="subtitle is-6">Ціна: <b>{{select}}</b> грн
+          <i v-if="currentPromo" class="promo-true">{{lastSelectedPrice}} грн</i>
           <i v-else class="promo-false"></i>
       </p>
-      <b v-if="currentPromo" class="is-6 sale">Sale</b>
-      <b v-else class="is-6 sale">Standart price</b>
+      <ol>
+        <li v-if="currentPromo" class="is-6"><b class="sale">Знижка!</b>
+        <li v-else> <b class="is-6">Без знижки</b></li>
+        <li><b v-if="checkHappyHours()" class="is-6 sale">{{superSale.description}} <br/> {{superSale.time_start}}:00 - {{superSale.time_end}}:00 <br/> при перевищенні {{superSale.price_over}} грн,<br/> {{superSale.sale}} % на одну<br/> за рандомом.</b></li>
+      </ol>
       </div>
     </div>
 
@@ -86,6 +89,24 @@ export default {
           this.lastSelectedPrice = this.product.lastprice.xl
           this.currentPromo = this.product.promo.xl
       }
+    },
+    checkHappyHours () {
+      const globalDate = new Date()
+      const getDayOfWeek = globalDate.getDay()
+      const getHours = globalDate.getHours()
+      const destructionDoW = this.superSale.dayofweekpromo.split('')
+      console.log(getDayOfWeek)
+      console.log(getHours)
+      console.log(parseInt(this.superSale.time_start))
+      console.log(destructionDoW)
+      if (getDayOfWeek >= parseInt(destructionDoW[0]) && getDayOfWeek <= parseInt(destructionDoW[1])) {
+        if (getHours >= parseInt(this.superSale.time_start) && getHours <= parseInt(this.superSale.time_end)) {
+          this.$store.commit('dailyPromo', true)
+          return true
+        } else {
+          return false
+        }
+      }
     }
   },
   msg: {
@@ -99,7 +120,9 @@ export default {
       chartIcon: chartIcon,
       select: this.product.currentprice.xl,
       lastSelectedPrice: this.product.lastprice.xl,
-      currentPromo: this.product.promo.xl
+      currentPromo: this.product.promo.xl,
+      superSale: this.$store.getters.sale[0],
+      activeDailyPromo: this.$store.getters.dailypromo
     }
   }
 }
@@ -134,15 +157,15 @@ export default {
 }
 .promo-true {
   text-decoration: line-through;
-  color: #ff0000;
+  color: #cc0000;
 }
 .promo-false{
   color: #ffffff;
 }
 .sale {
-  color: #ff0000;
+  color: #cc0000;
 }
-
+// ////////////////////////////////////////////////
 // $promo-false: #ff0000;
 // $chart-icon-bg: #ff0000;
 // $chart-icon-border: #000000;

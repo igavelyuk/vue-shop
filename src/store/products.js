@@ -3,37 +3,25 @@ export default ({
     products: [
     ],
     backup: [
-
     ],
     productsChart: [
     ],
-    promo: [
-      {
-        id: 1,
-        time_start: 12,
-        time_end: 15,
-        q_start: 1,
-        q_end: 99,
-        discount: 50,
-        discount_price: 100
-      },
-      {
-        id: 0,
-        time_start: 0,
-        time_end: 0,
-        q_start: 3,
-        q_end: 99,
-        discount: 50,
-        discount_price: 0
-      }
-    ]
+    sale: [
+    ],
+    activedailyPromo: false
   },
   mutations: {
+    dailyPromo (state, payload) {
+      state.activedailyPromo = payload
+    },
     addToChart (state, payload) {
       state.productsChart.push(payload)
     },
     addToProducts (state, payload) {
       state.products.push(payload)
+    },
+    addToSale (state, payload) {
+      state.sale.push(payload)
     },
     addToBackup (state, payload) {
       state.backup.push(payload)
@@ -47,7 +35,6 @@ export default ({
       })
     },
     filterProducts (state, payload) {
-      console.log('Hello!S')
       // var array = []
       // for (var i = 0; i < state.products.length; i++) {
       //   return state.products[i].name.includes(payload)
@@ -64,6 +51,12 @@ export default ({
   getters: {
     products (state) {
       return state.products
+    },
+    sale (state) {
+      return state.sale
+    },
+    dailypromo (state) {
+      return state.activedailyPromo
     },
     productsChart (state) {
       return state.productsChart

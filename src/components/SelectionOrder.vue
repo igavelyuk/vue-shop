@@ -18,10 +18,11 @@
      native-value="24cm">
      S
      </b-radio>
-       <b-button class="extra-paddings-button-chart" @click="addProduct(product)" type="is-primary" outlined pack="fas" icon-left="shopping-cart"></b-button>
+       <b-button v-if="orderprice>0" class="extra-paddings-button-chart" @click="addProduct(product)" type="is-primary" outlined pack="fas" icon-left="shopping-cart"></b-button>
+       <b-button v-else disabled class="extra-paddings-button-chart" type="is-primary" outlined pack="fas" icon-left="shopping-cart"></b-button>
      </div>
      <p class="content">
-       <b>Pizza size:</b>
+       <b>Розмір піцци:</b>
      {{ radio }}
      </p>
   </section>
@@ -40,9 +41,9 @@ export default {
       // console.log(product)
       // console.log('-------------PRODUCT--------------')
       this.$buefy.snackbar.open({
-        message: 'Product added to chart',
+        message: 'Додано до кошика',
         position: 'is-bottom',
-        actionText: 'Go to Chart',
+        actionText: 'Переглянути покупки',
         onAction: () => {
           this.$buefy.toast.open({
             message: 'Action pressed',

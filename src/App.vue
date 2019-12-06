@@ -2,10 +2,10 @@
   <div id="app">
     <b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
     <Menu />
-    <div class="container is-fullhd">
+    <div class="container is-widescreen is-fullhd">
       <div class="maincontainer notification">
         <router-view/>
-        <Footer msg="This is a footer component" copyInfo="Opensource" />
+        <Footer msg="" copyInfo="gavelWeb 2019" />
       </div>
     </div>
   </div>
@@ -55,6 +55,14 @@ export default {
         nodes.forEach((node) => {
           store.commit('addToProducts', node)
           store.commit('addToBackup', node)
+        })
+        nodes = JSON.parse(JSON.stringify(data.sale))
+        console.log(nodes)
+        console.log(nodes.length)
+        console.log(nodes[0])
+        // console.log(fixedJson.products)
+        nodes.forEach((node) => {
+          store.commit('addToSale', node)
         })
       })
       // this.loadData()
