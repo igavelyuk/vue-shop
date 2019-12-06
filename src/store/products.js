@@ -35,7 +35,6 @@ export default ({
       })
     },
     filterProducts (state, payload) {
-      console.log('Hello!S')
       // var array = []
       // for (var i = 0; i < state.products.length; i++) {
       //   return state.products[i].name.includes(payload)

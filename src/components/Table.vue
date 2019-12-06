@@ -96,40 +96,40 @@
         </b-field>
 
         <b-field>
-          <b-input placeholder="Адреса" type="text" validation-message="Обов'язкове поле"></b-input>
+          <b-input v-model="address" :click = "ckeck4Fail()" placeholder="Адреса" type="text" validation-message="Обов'язкове поле"></b-input>
         </b-field>
 
         <b-field>
-          <b-input placeholder="Номер Будинку" type="number" min="10" max="20">
+          <b-input v-model="housenum" :click = "ckeck4Fail()" placeholder="Номер Будинку" type="text">
           </b-input>
         </b-field>
 
         <b-field>
-          <b-input placeholder="Ваше ім'я'" type="text" required validation-message="Обов'язкове поле">
+          <b-input v-model="yourname" :click = "ckeck4Fail()" placeholder="Ваше ім'я'" type="text" required validation-message="Обов'язкове поле">
           </b-input>
         </b-field>
 
         <b-field>
-          <b-input placeholder="0666540976" type="telephone" required validation-message="Обов'язкове поле"></b-input>
+          <b-input v-model="yourtell" :click = "ckeck4Fail()" placeholder="0666540976" type="telephone" required validation-message="Обов'язкове поле"></b-input>
         </b-field>
 
         <b-field>
-          <b-input type="textarea" minlength="10" maxlength="100" placeholder="Додаткове повідомлення для Піцци Панди">
+          <b-input v-model="additionalinfo" type="textarea" minlength="10" maxlength="100" placeholder="Додаткове повідомлення для Піцци Панди">
           </b-input>
         </b-field>
       </section>
       <section v-else>
         <b-field>
-          <b-input placeholder="Ваше ім'я'" type="text" required validation-message="Обов'язкове поле">
+          <b-input v-model="yourname" :click = "ckeck4Fail()" placeholder="Ваше ім'я'" type="text" required validation-message="Обов'язкове поле">
           </b-input>
         </b-field>
 
         <b-field>
-          <b-input placeholder="0666540976" type="telephone" required validation-message="Обов'язкове поле"></b-input>
+          <b-input v-model="yourtell" :click = "ckeck4Fail()" placeholder="0666540976" type="telephone" required validation-message="Обов'язкове поле"></b-input>
         </b-field>
 
         <b-field>
-          <b-input type="textarea" minlength="10" maxlength="100" placeholder="Додаткове повідомлення для Піцци Панди">
+          <b-input v-model="additionalinfo" type="textarea" minlength="10" maxlength="100" placeholder="Додаткове повідомлення для Піцци Панди">
           </b-input>
         </b-field>
         <br/><br/><br/><br/><br/><br/>
@@ -137,10 +137,10 @@
     </b-step-item>
     <b-step-item label="Купівля" :clickable="isStepsClickable" disabled>
       <h1 class="title has-text-centered">Купівля</h1>
-      <b-button size="is-large" type="is-danger" icon-left="hand-point-up" @click="finishIt" >
-        <!-- @click="finishItModal=true" -->
-        Підтвердити
-      </b-button>
+      <br/><br/><br/><br/><br/><br/><br/>
+      <b-button v-if="failtoproceed" size="is-large" type="is-danger" icon-left="hand-point-up" @click="finishIt">Підтвердити</b-button>
+      <b-button v-else size="is-large" disabled icon-left="hand-point-up">Підтвердити</b-button>
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </b-step-item>
     <template v-if="customNavigation" slot="navigation" slot-scope="{previous, next}">
       <b-button outlined type="is-danger" icon-pack="fas" icon-left="backward" :disabled="previous.disabled" @click.prevent="previous.action">
@@ -186,8 +186,14 @@ export default {
       totalPrice: 200,
       counterX: 1,
       isDelivery: 'Доставка +50 грн',
+      failtoproceed: false,
       finishItModal: false,
-      activeDailyPromo: this.$store.getters.dailypromo
+      activeDailyPromo: this.$store.getters.dailypromo,
+      address: '',
+      housenum: '',
+      yourname: '',
+      yourtell: '',
+      additionalinfo: ''
     }
   },
   methods: {
@@ -229,16 +235,30 @@ export default {
       this.$store.commit('addToChart', newProduct)
       // }
     },
+    ckeck4Fail () {
+      console.log('Working')
+      if (this.yourname !== '' && this.yourtell !== '') {
+        this.failtoproceed = true
+      }
+    },
     finishIt () {
+      const delivery = {
+        pickup: this.isDelivery,
+        address: this.address,
+        housenum: this.housenum,
+        yourname: this.yourname,
+        yourtell: this.yourtell,
+        additionalinfo: this.additionalinfo
+      }
       axios.post('https://pizzapandabc.com.ua/a/message/a.php', {
-        products: 'Fred',
-        total_price: '999'
+        products: this.$store.getters.productsChart,
+        '.': '.',
+        delivery: delivery
       })
         .then(function (response) {
           this.finishItModal = this.responce
         })
         .catch(function (error) {
-          this.finishItModal = false
           console.log(error)
         })
     },
@@ -256,6 +276,7 @@ export default {
     countTotalPrice () {
       const Total = this.$store.getters.productsChart
       var result = 0
+
       // if (this.activeDailyPromo === true) {
       //   const TotalX = this.$store.getters.productsChart
       //   console.log(TotalX)
@@ -269,7 +290,19 @@ export default {
       return result
     },
     products () {
-      return this.$store.getters.productsChart
+      var bUCO = this.$store.getters.productsChart // baseUnsortedChartObj
+      bUCO.sort(function (a, b) {
+        var nameA = a.name.toUpperCase() // ignore upper and lowercase
+        var nameB = b.name.toUpperCase() // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1
+        }
+        if (nameA > nameB) {
+          return 1
+        }
+        return 0
+      })
+      return bUCO
     }
   }
 }
