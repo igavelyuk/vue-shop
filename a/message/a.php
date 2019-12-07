@@ -59,45 +59,24 @@ function send_mail($data){
       </tr>
       </tbody>
       </table>';
-      $currentprice="Вартість";
-      $lastprice="Вартicть без знижки";
-      $description="Опис";
-      $icon="Значок";
-      $id="id";
-      $name="Назва";
-      $picture="картина";
-      $promo="Акційний";
-      $quantity="Кількість";
-      $size="Розмір";
-      $date="Дата та врем'я додатку у кошик";
-      $finalprice="Ціна з урахуванням кількості, без акціі"
-      $body.= '<div style="padding:5px;margin:10px;font-size:2em">Деталі замовлення - '.$formatted.'</div>';
+      $currentprice='Вартість';
+      $lastprice='Вартicть без знижки';
+      $description='Опис';
+      $icon='Значок';
+      $id='id';
+      $name='Назва';
+      $picture='картина';
+      $promo='Акційний';
+      $quantity='Кількість';
+      $size='Розмір';
+      $date='Дата та время додатку у кошик';
+      $finalprice="Ціна з урахуванням кількості, без акціі";
+      // $body.= '<div style="padding:5px;margin:10px;font-size:2em">Деталі замовлення - '.$formatted.'</div>';
       foreach ($data["products"]as $subnode) {
-        $body.= '<div style="font-size:1em">';
-        foreach ($subnode as $key => $value) {
-          if ($key!='id') {
-            if ($key!='icon') {
-              if ($key!='picture') {
-                switch ($key) {
-                  case "currentprice":
-                  $body.= '<div style="font-size:1em">'.$key.': '.$value.'</div>';
-                  break;
-                  case 1:
-                  $body.= '<div style="font-size:1em">'.$key.': '.$value.'</div>';
-                  break;
-                  case 2:
-                  $body.= '<div style="font-size:1em">'.$key.': '.$value.'</div>';
-                  break;
-                  default:
-                  $body.= '<div style="font-size:1em">'.$key.': '.$value.'</div>';
-                }
-              }else{
-                $body.= '<img height="100px" width="100px" src ="'.$value.'"/>';
-              }
-            }
-          }
-        }
-        $body.= '</div>';
+        // $body.= '<p>'.$subnode.'</p>';
+        // $body.= '<div style="font-size:1em">';
+        $body.= '<p>'.$subnode['name'].': '.$subnode['currentprice'].'грн x '.$subnode['quantity'].'шт = '.$subnode['finalprice'].'грн</p>';
+        // $body.= '</div>';
       }
       //
       // $body.= '<div style="padding:5px;margin:10px;font-size:1.5em">'.'</div>';
@@ -111,26 +90,26 @@ function send_mail($data){
       // $body.= '<div style="padding:5px;margin:10px;text-align:center;">'.' .</div><hr>';
       // $body.= '<div style="padding:5px;margin:10px;text-align:center;color:green;">Місцезнаходження, оределенно як: '.$location_message.'</div><hr>';
       //main part
-      $body.= '<hr style="border:0;color:#ccc;background-color:#ccc;height:1px;width:100%;text-align:left">
-      <div style="color:#666;font-size:11px;padding:20px 10px 10px">
-      З повагою, служба доставки їжі "Панда Біла Церква".<br>
-      Даний лист сформовано автоматично, прохання не відповідати на нього по електронній пошті.<br>
-      горяча ліния: Kiyvstar (096)41-41-096 и Life Cell (063)41-41-096 <br>
-      Також якщо відбулися технічні проблеми напишіть лист <a href="mailto:support@pizzapandabc.com.ua" target="_blank" data-saferedirecturl="pizzapandabc.com.ua">support@pizzapandabc.com.ua</a><br>
-      </div>
-      </td>
-      </tr>
-      </tbody>
-      </table>
-      <div style="text-align:center;color:#666;font-size:11px;padding:20px 50px 10px 50px">
-      Copyright © 2006—2019
-      <a href="pizzapandabc.com.ua" target="_blank" data-saferedirecturl="pizzapandabc.com.ua">
-      "'.$slogan.'"</a>
-      </div>
-      </td>
-      </tr>
-      </tbody>
-      </table></body></html>';
+      // $body.= '<hr style="border:0;color:#ccc;background-color:#ccc;height:1px;width:100%;text-align:left">
+      // <div style="color:#666;font-size:11px;padding:20px 10px 10px">
+      // З повагою, служба доставки їжі "Панда Біла Церква".<br>
+      // Даний лист сформовано автоматично, прохання не відповідати на нього по електронній пошті.<br>
+      // горяча ліния: Kiyvstar (096)41-41-096 и Life Cell (063)41-41-096 <br>
+      // Також якщо відбулися технічні проблеми напишіть лист <a href="mailto:support@pizzapandabc.com.ua" target="_blank" data-saferedirecturl="pizzapandabc.com.ua">support@pizzapandabc.com.ua</a><br>
+      // </div>
+      // </td>
+      // </tr>
+      // </tbody>
+      // </table>
+      // <div style="text-align:center;color:#666;font-size:11px;padding:20px 50px 10px 50px">
+      // Copyright © 2006—2019
+      // <a href="pizzapandabc.com.ua" target="_blank" data-saferedirecturl="pizzapandabc.com.ua">
+      // "'.$slogan.'"</a>
+      // </div>
+      // </td>
+      // </tr>
+      // </tbody>
+      // </table></body></html>';
       mail($to_email, $subject, $body, $headers);
 }
 // function get_ip(){

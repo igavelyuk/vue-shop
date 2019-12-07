@@ -49,6 +49,14 @@
                 <i class="striked" v-if="products.row.promo"> {{ products.row.lastprice }} </i>
               </b-table-column>
 
+            <b-table-column v-bind:label="superSaleDescription.description">
+                <span v-if="promoid===products.row.id">
+                  <b-icon pack="fas" :icon="products.row.promo ? 'check-circle' : 'times-circle'">
+                  </b-icon>
+                  {{superSaleDescription.description}} <br/> {{superSaleDescription.time_start}}:00 - {{superSaleDescription.time_end}}:00 <br/> при перевищенні {{superSaleDescription.price_over}} грн,<br/> {{superSaleDescription.sale}} % на одну<br/> за рандомом.
+                </span>
+              </b-table-column>
+
               <b-table-column field="date" label="Дата" centered>
                 <span class="tag is-success">
                   {{ new Date(products.row.date).toLocaleDateString() }} {{new Date(products.row.date).toLocaleTimeString()}}
@@ -189,11 +197,14 @@ export default {
       failtoproceed: false,
       finishItModal: false,
       activeDailyPromo: this.$store.getters.dailypromo,
+      superSaleDescription: this.$store.getters.sale[0],
       address: '',
       housenum: '',
       yourname: '',
       yourtell: '',
-      additionalinfo: ''
+      additionalinfo: '',
+      runonce: false,
+      promoid: ''
     }
   },
   methods: {
@@ -255,20 +266,30 @@ export default {
         '.': '.',
         delivery: delivery
       })
-        .then(function (response) {
-          this.finishItModal = this.responce
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
+      // .then(function (response) {
+      //   console.log(response)
+      // })
+      // .catch(function (error) {
+      //   console.log(error)
+      // })
     },
     setSaleDaily () {
+      // console.log('StartWorking SALE')
+      var Chart = this.$store.getters.productsChart
       if (this.activeDailyPromo === true) {
-        const Total = this.$store.getters.productsChart
-        var nProduct = Total.currentprice.sort()
-        nProduct.forEach(id => {
-          console.log(id.currentprice)
-        })
+        var bPass = false
+        var iSumm = 0
+        for (var i = 0; i < Chart.length; i++) {
+          iSumm += Chart[i].currentprice * Chart[i].quantity
+          if (iSumm > 300) {
+            bPass = true
+          }
+        }
+        if (bPass) {
+          Chart.sort((a, b) => a.currentprice - a.currentprice)
+        }
+        this.promoid = Chart[0].id
+        this.runonce = true
       }
     }
   },
@@ -304,6 +325,15 @@ export default {
       })
       return bUCO
     }
+  },
+  updated: function () {
+    // this.$nextTick(function () {
+    if (this.runonce === false) {
+      this.setSaleDaily()
+    }
+    // Code that will run only after the
+    // entire view has been re-rendered
+    // })
   }
 }
 </script>
