@@ -51,7 +51,7 @@
 
             <b-table-column v-bind:label="superSaleDescription.description">
                 <span v-if="promoid===products.row.id">
-                  <b-icon pack="fas" :icon="products.row.promo ? 'check-circle' : 'times-circle'">
+                  <b-icon pack="fas" icon="check-circle">
                   </b-icon>
                   {{superSaleDescription.description}} <br/> {{superSaleDescription.time_start}}:00 - {{superSaleDescription.time_end}}:00 <br/> при перевищенні {{superSaleDescription.price_over}} грн,<br/> {{superSaleDescription.sale}} % на одну<br/> за рандомом.
                 </span>
@@ -276,19 +276,27 @@ export default {
     setSaleDaily () {
       // console.log('StartWorking SALE')
       var Chart = this.$store.getters.productsChart
+      var bPass = false
       if (this.activeDailyPromo === true) {
-        var bPass = false
         var iSumm = 0
         for (var i = 0; i < Chart.length; i++) {
           iSumm += Chart[i].currentprice * Chart[i].quantity
-          if (iSumm > 300) {
+          var x = typeof iSumm
+          console.log(x)
+          if (iSumm >= 300) {
             bPass = true
+          } else {
+            bPass = false
           }
         }
-        if (bPass) {
-          Chart.sort((a, b) => a.currentprice - a.currentprice)
+        if (bPass === true) {
+          Chart.sort((a, b) => a.currentprice - b.currentprice)
         }
-        this.promoid = Chart[0].id
+        if (iSumm >= 300 && bPass === true) {
+          this.promoid = Chart[0].id
+        } else {
+          return 0
+        }
         this.runonce = true
       }
     }
