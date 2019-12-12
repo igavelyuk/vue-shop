@@ -127,6 +127,5 @@ export default {
 .radio-active{
   border: 1px solid #9400ff;
   border-radius: 5px;
-
 }
 </style>
