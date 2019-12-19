@@ -1,5 +1,5 @@
 <template>
-<div class="columns">{{msg}}
+<div class="columns is-multiline">{{msg}}
   <div :key="product.id" v-for="product in products" class="column is-12-mobile is-half-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
     <Product v-bind:product="product" />
   </div>

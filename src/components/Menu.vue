@@ -3,7 +3,7 @@
   <b-navbar>{{msg}}
       <template slot="brand">
           <b-navbar-item tag="router-link" :to="{ path: '/' }">
-              <img src="../assets/logo.png" width="30" height="50">
+              <img class="is-rounded" src="../assets/logo.png">
               <span class="brand">{{brand_name}}</span>
           </b-navbar-item>
       </template>
@@ -93,6 +93,9 @@ export default {
 }
 .icon {
   margin: 5px!important;
+}
+.is-rounded{
+  border-radius: 50%;
 }
 // .link {
 //   padding: 10px;
