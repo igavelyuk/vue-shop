@@ -2,7 +2,7 @@
 <div class="product">
   <div class="card">
     <div class="card-image">
-      <figure class="image is-4by3">
+      <figure class="image is-1by1">
         <img class="image-proper" :src= "product.picture" alt="Placeholder image"/>
         <img class="brand-overlay" :src="brandOverlay" alt="Placeholder image"/>
       </figure>
@@ -141,8 +141,8 @@ export default {
   top:80%!important;
   left:60%!important;
   bottom: 0!important;
-  height:30px!important;
-  width: 100px!important;
+  height:40px!important;
+  width: 120px!important;
   opacity: 0.6;
   filter: alpha(opacity=60);
   /* For IE8 and earlier */

@@ -21,7 +21,7 @@
               </b-table-column>
 
               <b-table-column field="picture" label="Іконка">
-                <img :src="products.row.picture" width="40px" height="auto" alt="Product picture" />
+                <img :src="products.row.picture" width="40px" height="40px" alt="Product picture" />
               </b-table-column>
 
               <b-table-column field="size" label="Розмір">
@@ -50,7 +50,8 @@
               </b-table-column>
 
             <b-table-column v-bind:label="superSaleDescription.description">
-                <span v-if="promoid===products.row.id">
+              <!-- v-if="promoid===products.row.id" -->
+                <span v-if="countTotalPrice>=superSaleDescription.price_over && promoid===products.row.id">
                   <b-icon pack="fas" icon="check-circle">
                   </b-icon>
                   {{superSaleDescription.description}} <br/> {{superSaleDescription.time_start}}:00 - {{superSaleDescription.time_end}}:00 <br/> при перевищенні {{superSaleDescription.price_over}} грн,<br/> {{superSaleDescription.sale}} % на одну<br/> за рандомом.
@@ -148,7 +149,7 @@
       <br/><br/><br/><br/><br/><br/><br/>
       <b-button v-if="failtoproceed" size="is-large" type="is-danger" icon-left="hand-point-up" @click="finishIt">Підтвердити</b-button>
       <b-button v-else size="is-large" disabled icon-left="hand-point-up">Підтвердити</b-button>
-      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <br/><br/><br/><br/><br/><br/><br/>
     </b-step-item>
     <template v-if="customNavigation" slot="navigation" slot-scope="{previous, next}">
       <b-button outlined type="is-danger" icon-pack="fas" icon-left="backward" :disabled="previous.disabled" @click.prevent="previous.action">
@@ -240,8 +241,10 @@ export default {
         quantity: currentOrder.quantity,
         size: currentOrder.size,
         date: currentOrder.date,
-        finalprice: currentOrder.currentprice * currentOrder.quantity
+        finalprice: currentOrder.currentprice * currentOrder.quantity,
+        activedailypromo: ''
       }
+      this.setSaleDaily()
       this.$store.commit('delete', currentOrder.id)
       this.$store.commit('addToChart', newProduct)
       // }
@@ -276,26 +279,36 @@ export default {
     setSaleDaily () {
       // console.log('StartWorking SALE')
       var Chart = this.$store.getters.productsChart
-      var bPass = false
+      // var bPass = false
       if (this.activeDailyPromo === true) {
         var iSumm = 0
         for (var i = 0; i < Chart.length; i++) {
           iSumm += Chart[i].currentprice * Chart[i].quantity
-          var x = typeof iSumm
-          console.log(x)
+          // var x = typeof iSumm
+          // console.log('----------------------------------')
+          // console.log(x)
           if (iSumm >= 300) {
-            bPass = true
-          } else {
-            bPass = false
+            // bPass = true
+            Chart.sort((a, b) => a.currentprice - b.currentprice)
+            this.promoid = Chart[0].id
+            const newProduct = {
+              currentprice: Chart[0].currentprice,
+              lastprice: Chart[0].lastprice,
+              description: Chart[0].description,
+              icon: Chart[0].icon,
+              id: Chart[0].id,
+              name: Chart[0].name,
+              picture: Chart[0].picture,
+              promo: Chart[0].promo,
+              quantity: Chart[0].quantity,
+              size: Chart[0].size,
+              date: Chart[0].date,
+              finalprice: Chart[0].currentprice * Chart[0].quantity,
+              activedailypromo: this.$store.getters.sale[0].description
+            }
+            this.$store.commit('delete', Chart[0].id)
+            this.$store.commit('addToChart', newProduct)
           }
-        }
-        if (bPass === true) {
-          Chart.sort((a, b) => a.currentprice - b.currentprice)
-        }
-        if (iSumm >= 300 && bPass === true) {
-          this.promoid = Chart[0].id
-        } else {
-          return 0
         }
         this.runonce = true
       }

@@ -198,7 +198,7 @@ function viberMessage($data){
    "min_api_version":1,
    "sender":{
       "name":"Піцца Панда",
-      "avatar":"https://pizzapandabc.com.ua/logo.png"
+      "avatar":"https://pizzapandabc.com.ua/img/icons/favicon-32x32.png"
    },
    "broadcast_list":[
       "TCCxdJo6rbUtJUEp5ms0ow==",
@@ -206,15 +206,17 @@ function viberMessage($data){
    ],
    "tracking_data":"tracking data",
    "type":"text","text":"';
+
    foreach ($data["products"]as $subnode) {
      // $body.= '<p>'.$subnode.'</p>';
      // $body.= '<div style="font-size:1em">';
-     $body.= ''.$subnode['name'].': '.$subnode['currentprice'].'грн x '.$subnode['quantity'].'шт = '.$subnode['finalprice'].'грн | розмір'.$subnode['size'].'';
+    $promodescription=$subnode['activedailypromo'];
+     $body.= ''.$subnode['name'].': '.$subnode['currentprice'].'грн x '.$subnode['quantity'].'шт = '.$subnode['finalprice'].'грн | розмір='.$subnode['size'].' | '.$promodescription.'($)';
      // $body.= '</div>';
    }
    $subnode = $data['delivery'];
    $body.= 'Доставка: Біла Церква';
-   $body.= ''.$subnode['address'].': '.$subnode['housenum'].'</b> , додаткова інформація '.$subnode['additionalinfo'];
+   $body.= ''.$subnode['address'].': '.$subnode['housenum'].' , додаткова інформація '.$subnode['additionalinfo'];
    $body.= ''.$subnode['yourname'].', тел:'.$subnode['yourtell'].'';
    $body.= ''.$location_message.'"}';
 
@@ -237,7 +239,7 @@ function viberServiceMessage($data){
    "min_api_version":1,
    "sender":{
       "name":"Піцца Панда",
-      "avatar":"https://pizzapandabc.com.ua/logo.png"
+      "avatar":"https://pizzapandabc.com.ua/img/icons/favicon-32x32.png"
    },
    "broadcast_list":[
       "TCCxdJo6rbUtJUEp5ms0ow==",
@@ -246,14 +248,15 @@ function viberServiceMessage($data){
    "tracking_data":"tracking data",
    "type":"text","text":"';
    foreach ($data["products"]as $subnode) {
+     $promodescription=$subnode['activedailypromo'];
      // $body.= '<p>'.$subnode.'</p>';
      // $body.= '<div style="font-size:1em">';
-     $body.= '<3'.$subnode['name'].': '.$subnode['currentprice'].'грн x '.$subnode['quantity'].'шт = '.$subnode['finalprice'].'грн | розмір'.$subnode['size'].'| ';
+     $body.= '<3'.$subnode['name'].': '.$subnode['currentprice'].'грн x '.$subnode['quantity'].'шт = '.$subnode['finalprice'].'грн | розмір'.$subnode['size'].' | '.$promodescription.'($) | ';
      // $body.= '</div>';
    }
    $subnode = $data['delivery'];
    $body.= 'Доставка: Біла Церква';
-   $body.= 'вул.'.$subnode['address'].':дом '.$subnode['housenum'].', додаткове інфо '.$subnode['additionalinfo'];
+   $body.= 'вул.'.$subnode['address'].' :дом '.$subnode['housenum'].', додаткове інфо '.$subnode['additionalinfo'];
    $body.= 'Імя '.$subnode['yourname'].', тел:'.$subnode['yourtell'].'';
    $body.= ''.$location_message.'"}';
 
