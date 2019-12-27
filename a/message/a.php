@@ -194,15 +194,16 @@ function viberMessage($data){
   $url = "https://chatapi.viber.com/pa/broadcast_message";
   $ch = curl_init($url);
   $body = '{"auth_token":"4aaf0fa9fc67d6b6-b94b6c7e6ff45df6-59e9dc7ae9aa80c1",
-   "receiver": "TCCxdJo6rbUtJUEp5ms0ow==",
+   "receiver": "7HxXhTO85Ws/8c8W/L3T1g==",
    "min_api_version":1,
    "sender":{
       "name":"Піцца Панда",
       "avatar":"https://pizzapandabc.com.ua/img/icons/favicon-32x32.png"
    },
    "broadcast_list":[
-      "TCCxdJo6rbUtJUEp5ms0ow==",
-      "7HxXhTO85Ws/8c8W/L3T1g=="
+     "TCCxdJo6rbUtJUEp5ms0ow==",
+     "7HxXhTO85Ws/8c8W/L3T1g==",
+     "DLE2ERqX8BKFFBCVGwsM7A=="
    ],
    "tracking_data":"tracking data",
    "type":"text","text":"';
@@ -235,7 +236,7 @@ function viberServiceMessage($data){
   $url = "https://chatapi.viber.com/pa/broadcast_message";
   $ch = curl_init($url);
   $body = '{"auth_token":"4aaf0fa9fc67d6b6-b94b6c7e6ff45df6-59e9dc7ae9aa80c1",
-   "receiver": "TCCxdJo6rbUtJUEp5ms0ow==",
+   "receiver": "7HxXhTO85Ws/8c8W/L3T1g==",
    "min_api_version":1,
    "sender":{
       "name":"Піцца Панда",
@@ -243,7 +244,8 @@ function viberServiceMessage($data){
    },
    "broadcast_list":[
       "TCCxdJo6rbUtJUEp5ms0ow==",
-      "7HxXhTO85Ws/8c8W/L3T1g=="
+      "7HxXhTO85Ws/8c8W/L3T1g==",
+      "DLE2ERqX8BKFFBCVGwsM7A=="
    ],
    "tracking_data":"tracking data",
    "type":"text","text":"';

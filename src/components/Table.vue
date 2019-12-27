@@ -30,7 +30,8 @@
 
               <b-table-column field="quantity" width="130px" label="Кількість">
                 <b-field>
-                  <b-numberinput min="0" max="10" size="is-small" type="is-success" v-model="products.row.quantity" v-on:input="changeOrderQuantity(products.row)"></b-numberinput>
+                  <b-numberinput v-if="chartCount.length > 1 && promoid===products.row.id" min="1" max="1" size="is-small" type="is-disabled" v-model="products.row.quantity"></b-numberinput>
+                  <b-numberinput v-else min="0" max="10" size="is-small" type="is-success" v-model="products.row.quantity" v-on:input="changeOrderQuantity(products.row)"></b-numberinput>
                 </b-field>
               </b-table-column>
 
@@ -51,10 +52,10 @@
 
             <b-table-column v-bind:label="superSaleDescription.description">
               <!-- v-if="promoid===products.row.id" -->
-                <span v-if="countTotalPrice>=superSaleDescription.price_over && promoid===products.row.id">
+                <span v-if="chartCount.length > 1 && promoid===products.row.id">
                   <b-icon pack="fas" icon="check-circle">
                   </b-icon>
-                  {{superSaleDescription.description}} <br/> {{superSaleDescription.time_start}}:00 - {{superSaleDescription.time_end}}:00 <br/> при перевищенні {{superSaleDescription.price_over}} грн,<br/> {{superSaleDescription.sale}} % на одну<br/> за рандомом.
+                  {{superSaleDescription.description}} <br/> {{superSaleDescription.time_start}}:00 - {{superSaleDescription.time_end}}:00,<br/> {{superSaleDescription.sale}} % на одну<br/> за рандомом.
                 </span>
               </b-table-column>
 
@@ -90,7 +91,7 @@
       <h1 class="title has-text-centered">
         <div class="field">
            <b-switch v-model="isDelivery"
-                true-value="Доставка +50 грн"
+                true-value="Доставка"
                 false-value="Самовинос">
                 {{ isDelivery }}
            </b-switch>
@@ -98,7 +99,7 @@
        <div>Загальна сума {{reCalculate()}}</div>
       </h1>
 
-      <section v-if="isDelivery==='Доставка +50 грн'">
+      <section v-if="isDelivery==='Доставка'">
         <b-field>
           <b-input placeholder="Біла Церква" value="Біла Церква">
           </b-input>
@@ -147,7 +148,7 @@
     <b-step-item label="Купівля" :clickable="isStepsClickable" disabled>
       <h1 class="title has-text-centered">Купівля</h1>
       <br/><br/><br/><br/><br/><br/><br/>
-      <b-button v-if="failtoproceed" size="is-large" type="is-danger" icon-left="hand-point-up" @click="finishIt">Підтвердити</b-button>
+      <b-button v-if="failtoproceed && !finishItModal" size="is-large" type="is-danger" icon-left="hand-point-up" @click="finishIt">Підтвердити</b-button>
       <b-button v-else size="is-large" disabled icon-left="hand-point-up">Підтвердити</b-button>
       <br/><br/><br/><br/><br/><br/><br/>
     </b-step-item>
@@ -194,7 +195,7 @@ export default {
       isProfileSuccess: false,
       totalPrice: 200,
       counterX: 1,
-      isDelivery: 'Доставка +50 грн',
+      isDelivery: 'Доставка',
       failtoproceed: false,
       finishItModal: false,
       activeDailyPromo: this.$store.getters.dailypromo,
@@ -205,12 +206,19 @@ export default {
       yourtell: '',
       additionalinfo: '',
       runonce: false,
-      promoid: ''
+      promoid: '',
+      chartCount: this.$store.getters.productsChart
     }
   },
   methods: {
     reCalculate () {
-      if (this.isDelivery === 'Доставка +50 грн') {
+      if (this.superSaleDescription.price_over === 'undefine') {
+        this.superSaleDescription.price_over = 300
+      }
+      if (this.isDelivery === 'Доставка') {
+        if (this.countTotalPrice >= parseInt(this.superSaleDescription.price_over)) {
+          return this.countTotalPrice
+        }
         return this.countTotalPrice + 50
       } else {
         return this.countTotalPrice
@@ -256,6 +264,7 @@ export default {
       }
     },
     finishIt () {
+      this.finishItModal = true
       const delivery = {
         pickup: this.isDelivery,
         address: this.address,
@@ -269,6 +278,10 @@ export default {
         '.': '.',
         delivery: delivery
       })
+      this.yourname = ''
+      this.yourtell = ''
+      this.failtoproceed = false
+
       // .then(function (response) {
       //   console.log(response)
       // })
@@ -281,18 +294,24 @@ export default {
       var Chart = this.$store.getters.productsChart
       // var bPass = false
       if (this.activeDailyPromo === true) {
-        var iSumm = 0
+        // var iSumm = 0
         for (var i = 0; i < Chart.length; i++) {
-          iSumm += Chart[i].currentprice * Chart[i].quantity
+          // iSumm += Chart[i].currentprice * Chart[i].quantity
           // var x = typeof iSumm
           // console.log('----------------------------------')
           // console.log(x)
-          if (iSumm >= 300) {
+          // if (iSumm >= 300) {   // important
+          if (Chart.length > 1) {
             // bPass = true
             Chart.sort((a, b) => a.currentprice - b.currentprice)
             this.promoid = Chart[0].id
+            const RecalcPrice = parseFloat(Chart[0].currentprice)
+            const RecalcQ = parseFloat(Chart[0].quantity)
+            const finalPriceCalculated = RecalcPrice / 2.0 * RecalcQ
+            console.log('----------------------------------------------------')
+            console.log(finalPriceCalculated)
             const newProduct = {
-              currentprice: Chart[0].currentprice,
+              currentprice: finalPriceCalculated, //  / 2
               lastprice: Chart[0].lastprice,
               description: Chart[0].description,
               icon: Chart[0].icon,
@@ -303,7 +322,7 @@ export default {
               quantity: Chart[0].quantity,
               size: Chart[0].size,
               date: Chart[0].date,
-              finalprice: Chart[0].currentprice * Chart[0].quantity,
+              finalprice: finalPriceCalculated,
               activedailypromo: this.$store.getters.sale[0].description
             }
             this.$store.commit('delete', Chart[0].id)

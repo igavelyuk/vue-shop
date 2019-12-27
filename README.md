@@ -8,7 +8,7 @@ This project is a child of pink_tiger_burger_builder rewritten on VUE
 The pink_tiger_burger_builder is full featured superfast shop for burgers/pizzas/sushi's written from scratch on JS+SCSS+HTML+GULP
 
 In VUE SHOP we will use Vue framework with router and firebase, Visual structure will be more or less common with ancestor.
-[![Video of Current Status](https://img.youtube.com/vi/rJAcoUzxUEA/0.jpg)](https://youtu.be/rJAcoUzxUEA)
+[![Video of Current Status](https://img.youtube.com/vi/GpB7B7w2008/0.jpg)](https://youtu.be/GpB7B7w2008)
 
 ## Contribute
 
