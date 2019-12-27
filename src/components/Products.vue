@@ -1,5 +1,5 @@
 ``<template>
-<div class="product">
+<div class="product effect2">
   <div class="card">
     <div class="card-image">
       <figure class="image is-1by1">
@@ -21,12 +21,13 @@
       <ol>
         <li v-if="currentPromo" class="is-6"><b class="sale">Знижка!</b>
         <li v-else> <b class="is-6">Без знижки</b></li>
-        <li v-if="checkHappyHours()"><b class="is-6 sale">{{superSale.description}} <br/> {{superSale.time_start}}:00 - {{superSale.time_end}}:00 <br/> при перевищенні {{superSale.price_over}} грн,<br/> {{superSale.sale}} % на одну<br/> за рандомом.</b></li>
+        <li v-if="checkHappyHours()"><b class="is-6 sale">{{superSale.description}} <br/> {{superSale.time_start}}:00 - {{superSale.time_end}}:00 <br/> {{superSale.sale}} % на одну<br/> за рандомом.</b></li>
+        <li> <b class="is-6 sale">При перевищенні {{superSale.price_over}} грн,</b> <br/> <p class="sale">безкоштовна доставка</p></li>
       </ol>
       </div>
     </div>
 
-    <div class="content"> <b>Ингридиенты: </b>
+    <div class="content"> <b>Інгредієнти: </b>
       {{product.description}}
       <br>
       <i>Дата та час: </i>
@@ -34,7 +35,6 @@
     </div>
   </div>
 </div>
-
   <!-- <h3>{{product.name}}</h3>
   <div class="image">
     <img class="chart-icon" :src="chartIcon" alt="">
@@ -158,4 +158,43 @@ export default {
 .sale {
   color: #cc0000;
 }
+.product{
+  z-index:0!important;
+}
+.effect2
+{
+  position: relative!important;
+}
+.effect2:before, .effect2:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 12px;
+  left: 6px;
+  width: 47%;
+  top: 96%;
+  max-width:300px;
+  background: #777!important;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+.effect2:after
+{
+  z-index: -1;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
 </style>

@@ -1,6 +1,6 @@
 <template>
 <div class="columns is-multiline">{{msg}}
-  <div :key="product.id" v-for="product in products" class="column is-12-mobile is-half-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+  <div :key="product.id" v-for="product in products" class="column is-12-mobile is-half-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd effect2 ">
     <Product v-bind:product="product" />
   </div>
 </div>
@@ -33,6 +33,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
 // @media (min-height: 815px), screen and (orientation: portrait) {
 //     .main {
 //         background: #ffffff;
