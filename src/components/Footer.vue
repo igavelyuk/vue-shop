@@ -15,7 +15,7 @@
   </div>
   <div class="level-item has-text-centered">
     <div>
-      <p class="heading">Фоловерів у Інстаграмі (Бургер, Пицца, Суши)</p>
+      <p class="heading">Фоловерів у Інстаграмі (Бургер, Піцца, Суши)</p>
       <p class="title">14 000+</p>
     </div>
   </div>
